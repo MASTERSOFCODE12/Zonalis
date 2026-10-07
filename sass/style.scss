@@ -1,0 +1,20 @@
+//Importamos los componentes de la carpeta base
+@import "./base/reset";
+@import "./base/variables";
+
+//importamos los componentes de la carpeta components
+
+@import "./components/cards";
+@import "./components/buttons";
+
+//importamos los componentes de la carpeta layout
+
+@import "./layout/header";
+@import "./layout/index";
+@import "./layout/footer";
+@import "./layout/comofunciona";
+@import "./layout/nosotros";
+@import "./layout/estilocomercio";
+//importamos los componentes de la carpeta utilities
+
+@import "./utilities/mixins";

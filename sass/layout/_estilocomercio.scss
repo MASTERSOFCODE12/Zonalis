@@ -1,0 +1,424 @@
+$zonalis-orange: #E4661B !default;
+$zonalis-orange-dark: #C9560F !default;
+$zonalis-orange-soft: #FFF4EC !default;
+$zonalis-orange-line: #FCE6D9 !default;
+$zonalis-red: #EA4335 !default;
+$zonalis-red-dark: #D2362A !default;
+$zonalis-title: #1f2a44 !default;
+$zonalis-text: #4b5568 !default;
+$zonalis-border: #dfe3ea !default;
+$zonalis-page-bg: #f5f7fa !default;
+$zonalis-font: "Poppins", "Segoe UI", Arial, sans-serif !default;
+ 
+// Íconos de línea (se usan en varios lugares)
+@mixin zonalis-line-icon($size) {
+  flex: none;
+  width: $size;
+  height: $size;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+ 
+.zonalis-business {
+  background: $zonalis-page-bg;
+  font-family: $zonalis-font;
+  color: $zonalis-text;
+ 
+  &__container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+ 
+  // ---------- Encabezado ----------
+  &__header {
+    padding: 1.5rem 0 1.75rem;
+    background: #fff;
+    border-bottom: 1px solid $zonalis-border;
+  }
+ 
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    padding: 0.45rem 0.9rem;
+    background: #fff;
+    border: 1px solid $zonalis-border;
+    border-radius: 0.5rem;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: $zonalis-title;
+    cursor: pointer;
+ 
+    svg {
+      @include zonalis-line-icon(1rem);
+    }
+ 
+    &:hover {
+      background: $zonalis-page-bg;
+    }
+  }
+ 
+  &__identity {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+ 
+    @media (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+ 
+  // Marco de la foto / logo (círculo)
+  &__logo {
+    flex: none;
+    width: 7rem;
+    height: 7rem;
+    margin: 0;
+    overflow: hidden;
+    background: $zonalis-orange-soft;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 14px rgba(31, 42, 68, 0.18);
+ 
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+ 
+  &__logo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: $zonalis-red;
+ 
+    svg {
+      @include zonalis-line-icon(3rem);
+      stroke-width: 1.5;
+    }
+  }
+ 
+  &__info {
+    min-width: 0;
+  }
+ 
+  &__name {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: $zonalis-title;
+  }
+ 
+  &__owner {
+    margin: 0.2rem 0 0.7rem;
+    font-size: 1rem;
+    color: $zonalis-text;
+  }
+ 
+  &__location {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 0 0 1.25rem;
+    font-size: 0.9rem;
+    color: $zonalis-title;
+ 
+    @media (max-width: 700px) {
+      justify-content: center;
+    }
+ 
+    svg {
+      @include zonalis-line-icon(1.1rem);
+      margin-top: 0.15rem;
+    }
+ 
+    strong {
+      display: block;
+      font-weight: 500;
+    }
+ 
+    small {
+      display: block;
+      font-size: 0.8rem;
+      color: $zonalis-text;
+    }
+  }
+ 
+  // ---------- Botones ----------
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+ 
+    @media (max-width: 700px) {
+      justify-content: center;
+    }
+  }
+ 
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.1rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+ 
+    svg {
+      @include zonalis-line-icon(1.1rem);
+    }
+ 
+    &:focus-visible {
+      outline: 3px solid $zonalis-title;
+      outline-offset: 2px;
+    }
+ 
+    &--primary {
+      background: $zonalis-orange;
+      color: #fff;
+ 
+      &:hover {
+        background: $zonalis-orange-dark;
+      }
+    }
+ 
+    &--whatsapp {
+      background: $zonalis-red;
+      color: #fff;
+ 
+      &:hover {
+        background: $zonalis-red-dark;
+      }
+    }
+ 
+    &--outline {
+      background: #fff;
+      border-color: $zonalis-border;
+      color: $zonalis-title;
+ 
+      &:hover {
+        background: $zonalis-page-bg;
+      }
+    }
+  }
+ 
+  // ---------- Cuerpo ----------
+  &__body {
+    padding: 1.75rem 0 3rem;
+  }
+ 
+  &__layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+ 
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+    }
+  }
+ 
+  &__main,
+  &__side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 0;
+  }
+ 
+  &__card {
+    padding: 1.4rem 1.4rem 1.5rem;
+    background: #fff;
+    border-radius: 0.6rem;
+    box-shadow: 0 2px 10px rgba(31, 42, 68, 0.08);
+  }
+ 
+  &__card-title {
+    margin: 0 0 0.9rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: $zonalis-title;
+ 
+    &--small {
+      font-size: 1rem;
+    }
+  }
+ 
+  &__text {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+ 
+  // ---------- Servicios ----------
+  &__services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+ 
+  &__service {
+    min-width: 12rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid $zonalis-border;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $zonalis-title;
+  }
+ 
+  // ---------- Estadísticas del perfil ----------
+  &__stats {
+    padding: 1.25rem;
+    background: $zonalis-orange-soft;
+    border: 1px solid $zonalis-orange-line;
+    border-radius: 0.6rem;
+    box-shadow: 0 2px 10px rgba(31, 42, 68, 0.08);
+  }
+ 
+  &__stats-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $zonalis-title;
+ 
+    svg {
+      @include zonalis-line-icon(1.2rem);
+      color: $zonalis-orange;
+    }
+  }
+ 
+  &__stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+ 
+  &__stat {
+    padding: 0.9rem 0.5rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+ 
+  &__stat-icon {
+    @include zonalis-line-icon(1.2rem);
+    margin-bottom: 0.3rem;
+ 
+    &--visits {
+      color: $zonalis-orange;
+    }
+ 
+    &--member {
+      color: $zonalis-red;
+    }
+  }
+ 
+  &__stat-value {
+    margin: 0 0 0.15rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: $zonalis-title;
+ 
+    &--date {
+      font-size: 1.1rem;
+      line-height: 1.75;
+    }
+  }
+ 
+  &__stat-label {
+    margin: 0;
+    font-size: 0.72rem;
+    color: $zonalis-text;
+  }
+ 
+  // ---------- Información de contacto ----------
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+ 
+  &__contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+ 
+    > svg {
+      @include zonalis-line-icon(1.1rem);
+      margin-top: 0.1rem;
+      color: $zonalis-title;
+    }
+  }
+ 
+  &__contact-main {
+    margin: 0;
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+  }
+ 
+  &__contact-sub {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+ 
+  &__link {
+    font-size: 0.9rem;
+    color: $zonalis-orange;
+    text-decoration: none;
+ 
+    &:hover {
+      text-decoration: underline;
+    }
+ 
+    &--small {
+      font-size: 0.75rem;
+    }
+  }
+ 
+  // ---------- Reseñas de Google (widget de Elfsight) ----------
+  // El aspecto interno del widget (colores, idioma, tamaño de las tarjetas)
+  // se configura en el editor de Elfsight, no desde acá.
+  &__reviews {
+    margin-top: 2rem;
+  }
+ 
+  &__reviews-title {
+    margin: 0 0 1rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: $zonalis-title;
+  }
+ 
+  &__reviews-widget {
+    min-height: 8rem; // evita que la página "salte" mientras carga el widget
+  }
+}

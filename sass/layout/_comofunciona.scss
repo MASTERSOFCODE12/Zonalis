@@ -1,0 +1,561 @@
+// ---------- Variables ----------
+$fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$color-titulo: #1c2434;
+$color-texto: #3a4458;
+$color-rojo: #ef4136;     // centro de la franja
+$color-borde: #8b3a0b;    // sombra marrón de los costados
+$breakpoint-movil: 760px;
+ 
+// Unidad que escala con el ancho de pantalla (tope en 19px)
+@function u($n) {
+  @return calc(#{$n} * min(1vw, 19px));
+}
+ 
+// ---------- Banner "Como funciona" ----------
+.banner {
+  padding: u(6.5) u(2.5);
+  text-align: center;
+  font-family: $fuente;
+  // marrón en los costados que se funde con el rojo del centro
+  // (si más adelante ponés una imagen de fondo, reemplazá esta línea por background: url(...) center / cover)
+  background: linear-gradient(
+    90deg,
+    $color-borde 0%,
+    $color-borde 4%,
+    $color-rojo 17%,
+    $color-rojo 78%,
+    $color-borde 89%,
+    $color-borde 100%
+  );
+ 
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+ 
+  &__titulo {
+    margin: 0;
+    font-size: u(5.1);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: $color-titulo;
+  }
+ 
+  // Bloque centrado, con el texto alineado a la izquierda como en el diseño
+  &__subtitulo {
+    width: fit-content;
+    max-width: 100%;
+    margin: u(0.9) auto 0;
+    text-align: left;
+    font-size: u(1.9);
+    font-weight: 400;
+    line-height: 1.4;
+    color: $color-texto;
+  }
+}
+ 
+// ---------- Celular ----------
+@media (max-width: $breakpoint-movil) {
+  .banner {
+    padding: 44px 20px;
+ 
+    &__titulo {
+      font-size: 2rem;
+    }
+ 
+    &__subtitulo {
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+  }
+}
+
+
+//para clientes
+
+$zonalis-orange: #E4661B !default;
+$zonalis-orange-dark: #C9560F !default;
+$zonalis-orange-soft: #FCE6D9 !default;
+$zonalis-red: #EA4335 !default;
+$zonalis-title: #1f2a44 !default;
+$zonalis-text: #4b5568 !default;
+$zonalis-font: "Poppins", "Segoe UI", Arial, sans-serif !default;
+ 
+.zonalis-clients {
+  background: #fff;
+  padding: 4rem 1.5rem;
+  font-family: $zonalis-font;
+  text-align: center;
+ 
+  &__container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+ 
+  &__title {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $zonalis-title;
+  }
+ 
+  &__subtitle {
+    margin: 0 0 3rem;
+    font-size: 1rem;
+    color: $zonalis-text;
+  }
+ 
+  &__button {
+    display: inline-block;
+    margin-top: 3rem;
+    padding: 0.8rem 2rem;
+    background: $zonalis-orange;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 6px 16px rgba($zonalis-orange, 0.3);
+    transition: background 0.2s ease;
+ 
+    &:hover {
+      background: $zonalis-orange-dark;
+    }
+ 
+    &:focus-visible {
+      outline: 3px solid $zonalis-title;
+      outline-offset: 3px;
+    }
+  }
+ 
+  .zonalis-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+ 
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+ 
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+ 
+  .zonalis-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ 
+    &__icon {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 5rem;
+      height: 5rem;
+      margin-bottom: 1.25rem;
+      background: $zonalis-orange-soft;
+      border-radius: 50%;
+      color: $zonalis-red;
+ 
+      svg {
+        width: 2rem;
+        height: 2rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    }
+ 
+    &__number {
+      position: absolute;
+      top: -0.1rem;
+      right: -0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      background: $zonalis-title;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 50%;
+    }
+ 
+    &__title {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: $zonalis-title;
+    }
+ 
+    &__text {
+      margin: 0 0 0.8rem;
+      max-width: 15rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: $zonalis-text;
+    }
+ 
+    &__note {
+      margin: 0;
+      max-width: 15rem;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: $zonalis-red;
+    }
+  }
+}
+ 
+
+//para profesionales
+
+
+$zonalis-orange: #E4661B;
+$zonalis-orange-dark: #C9560F;
+$zonalis-orange-soft: #FCE6D9;
+$zonalis-red: #EA4335;
+$zonalis-title: #1f2a44;
+$zonalis-text: #4b5568;
+$zonalis-bg: #f6f9fb;
+$zonalis-font: "Poppins", "Segoe UI", Arial, sans-serif;
+ 
+$zonalis-bp-tablet: 900px;
+$zonalis-bp-mobile: 560px;
+ 
+.zonalis-professionals {
+  background: $zonalis-bg;
+  padding: 4rem 1.5rem;
+  font-family: $zonalis-font;
+  text-align: center;
+ 
+  &__container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+ 
+  &__title {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $zonalis-title;
+  }
+ 
+  &__subtitle {
+    margin: 0 0 3rem;
+    font-size: 1rem;
+    color: $zonalis-text;
+  }
+ 
+  &__button {
+    display: inline-block;
+    margin-top: 3rem;
+    padding: 0.8rem 2rem;
+    background: $zonalis-orange;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: background 0.2s ease;
+ 
+    &:hover {
+      background: $zonalis-orange-dark;
+    }
+ 
+    &:focus-visible {
+      outline: 3px solid $zonalis-title;
+      outline-offset: 3px;
+    }
+  }
+}
+ 
+.zonalis-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+ 
+  @media (max-width: $zonalis-bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+ 
+  @media (max-width: $zonalis-bp-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+ 
+.zonalis-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+  &__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.25rem;
+    background: $zonalis-orange-soft;
+    border-radius: 50%;
+    color: $zonalis-orange;
+ 
+    svg {
+      width: 2rem;
+      height: 2rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+ 
+  &__number {
+    position: absolute;
+    top: -0.1rem;
+    right: -0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: $zonalis-orange;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 50%;
+  }
+ 
+  &__title {
+    margin: 0 0 0.6rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: $zonalis-title;
+  }
+ 
+  &__text {
+    margin: 0 0 0.8rem;
+    max-width: 15rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: $zonalis-text;
+  }
+ 
+  &__note {
+    margin: 0;
+    max-width: 15rem;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: $zonalis-red;
+  }
+}
+
+//beneficios
+
+$zonalis-orange: #E4661B !default;
+$zonalis-red: #EA4335 !default;
+$zonalis-title: #1f2a44 !default;
+$zonalis-text: #4b5568 !default;
+$zonalis-font: "Poppins", "Segoe UI", Arial, sans-serif !default;
+ 
+.zonalis-benefits {
+  background: #fff;
+  padding: 4rem 1.5rem;
+  font-family: $zonalis-font;
+  text-align: center;
+ 
+  &__container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+ 
+  &__title {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $zonalis-title;
+  }
+ 
+  &__subtitle {
+    margin: 0 0 2.5rem;
+    font-size: 1rem;
+    color: $zonalis-text;
+  }
+ 
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+ 
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
+  }
+ 
+  &__card {
+    padding: 1.75rem 1.75rem 1.5rem;
+    background: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 18px rgba(31, 42, 68, 0.1);
+  }
+ 
+  &__card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+ 
+  &__card-icon {
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+ 
+    &--clients {
+      color: $zonalis-red;
+    }
+ 
+    &--professionals {
+      color: $zonalis-orange;
+    }
+  }
+ 
+  &__card-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $zonalis-title;
+  }
+ 
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+ 
+  &__item {
+    position: relative;
+    padding-left: 1.9rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: $zonalis-text;
+ 
+    // Círculo con check
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0.1rem;
+      left: 0;
+      width: 1.1rem;
+      height: 1.1rem;
+      background-color: $zonalis-orange;
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4L18 8'/%3E%3C/svg%3E");
+      background-size: 70%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+$zonalis-orange: #E4661B !default;
+$zonalis-orange-deep: #A8470F !default; // borde oscuro del degradado
+$zonalis-red: #EA4335 !default;
+$zonalis-font: "Poppins", "Segoe UI", Arial, sans-serif !default;
+ 
+.zonalis-cta {
+  padding: 4rem 1.5rem;
+  background: linear-gradient(
+    90deg,
+    $zonalis-orange-deep 0%,
+    $zonalis-red 22%,
+    $zonalis-red 78%,
+    $zonalis-orange-deep 100%
+  );
+  font-family: $zonalis-font;
+  text-align: center;
+ 
+  &__container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+ 
+  &__title {
+    margin: 0 0 0.75rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+  }
+ 
+  &__subtitle {
+    margin: 0 0 2rem;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+ 
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+ 
+  &__button {
+    display: inline-block;
+    padding: 0.8rem 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 2px solid #fff;
+    border-radius: 0.5rem;
+    transition: background 0.2s ease, color 0.2s ease;
+ 
+    &:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+ 
+    &--primary {
+      background: #fff;
+      color: $zonalis-red;
+ 
+      &:hover {
+        background: rgba(255, 255, 255, 0.88);
+      }
+    }
+ 
+    &--secondary {
+      background: transparent;
+      color: #fff;
+ 
+      &:hover {
+        background: #fff;
+        color: $zonalis-red;
+      }
+    }
+  }
+}

@@ -1,0 +1,919 @@
+:root {
+  --color-titulo: #1c2434;
+  --color-texto: #4a5568;
+  --color-boton: #e8681a;
+  --color-boton-hover: #cf5a12;
+ 
+  /* Cuando tengas la fuente, cambiá esta línea */
+  --fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+ 
+  /* Unidad base: el hero escala con el ancho de pantalla, igual que el diseño.
+     Si lo ves muy grande en pantallas anchas, bajá el 19px (ej: 15px). */
+  --u: min(1vw, 19px);
+}
+ 
+/* ---------- Hero: ocupa todo el ancho, texto a la izquierda e imagen a la derecha ---------- */
+.hero,
+.hero *,
+.hero *::before,
+.hero *::after {
+  box-sizing: border-box;
+}
+ 
+.hero {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: calc(5 * var(--u)) calc(2.5 * var(--u)) calc(5 * var(--u));
+  font-family: var(--fuente);
+  background: #fff;
+}
+ 
+/* Columna de texto (izquierda) */
+.hero__contenido {
+  flex: 0 0 57%;
+}
+ 
+.hero__titulo,
+.hero h1 {
+  margin: 0 0 calc(2 * var(--u));
+  font-size: calc(4.3 * var(--u));
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-titulo);
+}
+ 
+.hero__subtitulo,
+.hero p {
+  margin: 0 0 calc(3.8 * var(--u));
+  font-size: calc(1.5 * var(--u));
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-texto);
+}
+ 
+/* Botón (funciona aunque la clase se llame distinto, porque apunta al <a> del hero) */
+.hero__boton,
+.hero__contenido a {
+  display: inline-block;
+  padding: 1.17em 1.95em;
+  background: var(--color-boton);
+  color: #fff;
+  font-size: calc(1.07 * var(--u));
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: calc(0.35 * var(--u));
+  box-shadow: 0 calc(0.8 * var(--u)) calc(2 * var(--u)) rgba(232, 104, 26, 0.3);
+  transition: background 0.2s, transform 0.2s;
+}
+ 
+.hero__boton:hover,
+.hero__contenido a:hover {
+  background: var(--color-boton-hover);
+  transform: translateY(-2px);
+}
+ 
+.hero__boton:focus-visible,
+.hero__contenido a:focus-visible {
+  outline: 3px solid var(--color-titulo);
+  outline-offset: 3px;
+}
+ 
+/* Columna de imagen (derecha): toma todo el espacio que sobra */
+.hero__imagen {
+  flex: 1 1 0;
+  min-width: 0;
+}
+ 
+.hero__imagen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// ---------- Variables ----------
+$fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$fondo: #f8f7ff;
+$color-titulo: #1c2434;
+$color-texto: #6b7280;
+$color-acento: #EA4335;        // morado de la tarjeta activa y los puntos
+$color-borde: #EA4335;         // borde de la tarjeta activa
+$color-icono: #2d3748;
+$color-anillo: #EA4335;        // círculo alrededor del ícono
+$breakpoint-movil: 760px;
+ 
+// Unidad que escala con el ancho de pantalla (tope en 19px)
+@function u($n) {
+  @return calc(#{$n} * min(1vw, 19px));
+}
+ 
+// ---------- Carrusel ----------
+.carrusel {
+  --ancho-tarjeta: #{u(23)};
+  --separacion: #{u(2.7)};
+ 
+  padding: u(4.5) 0 u(4);
+  font-family: $fuente;
+  background: $fondo;
+ 
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+ 
+  &__titulo {
+    margin: 0 0 u(4.5);
+    text-align: center;
+    font-size: u(2.5);
+    font-weight: 700;
+    line-height: 1.2;
+    color: $color-titulo;
+  }
+ 
+  // Zona visible: justo 3 tarjetas (con un poco de aire para las sombras)
+  &__ventana {
+    width: calc(3 * var(--ancho-tarjeta) + 2 * var(--separacion) + #{u(3)});
+    max-width: 100%;
+    margin: 0 auto;
+    padding: u(1) u(1.5) u(4);
+    overflow: hidden;
+    outline-offset: 4px;
+  }
+ 
+  // La pista se desplaza para dejar la tarjeta activa en el centro
+  &__pista {
+    --i: 0; // índice de la tarjeta activa (lo cambia el JS)
+ 
+    display: flex;
+    gap: var(--separacion);
+    padding-inline: calc(50% - var(--ancho-tarjeta) / 2);
+    transform: translateX(calc(var(--i) * -1 * (var(--ancho-tarjeta) + var(--separacion))));
+    transition: transform 0.5s cubic-bezier(0.22, 0.8, 0.3, 1);
+  }
+ 
+  // ---------- Controles ----------
+  &__controles {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(3 * var(--ancho-tarjeta) + 2 * var(--separacion));
+    max-width: 100%;
+    margin: 0 auto;
+  }
+ 
+  // flecha izquierda + puntitos + flecha derecha, siempre centrados
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: u(1.6);
+  }
+ 
+  &__puntos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: u(0.9);
+    margin: 0;
+    padding: 0;
+  }
+ 
+  &__punto {
+    flex: none;
+    width: u(0.85);
+    height: u(0.85);
+    min-width: 8px;
+    min-height: 8px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #c9c7d6;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+ 
+    &.is-activo {
+      border-color: $color-acento;
+      background: $color-acento;
+      box-shadow: 0 0 0 3px rgba($color-acento, 0.18);
+    }
+ 
+    &:focus-visible {
+      outline: 2px solid $color-acento;
+      outline-offset: 3px;
+    }
+  }
+ 
+  // Botoncitos redondos de izquierda / derecha
+  &__flecha {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: u(2.6);
+    height: u(2.6);
+    min-width: 34px;
+    min-height: 34px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid $color-anillo;
+    border-radius: 50%;
+    background: #fff;
+    color: $color-acento;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+ 
+    svg {
+      width: 48%;
+      height: 48%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+ 
+    &:hover:not(:disabled) {
+      background: $color-acento;
+      border-color: $color-acento;
+      color: #fff;
+    }
+ 
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+ 
+    &:focus-visible {
+      outline: 2px solid $color-acento;
+      outline-offset: 3px;
+    }
+  }
+ 
+  &__progreso {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: u(0.8);
+    font-size: u(1.05);
+    font-weight: 500;
+    color: #9ca3af;
+  }
+ 
+  &__desde {
+    min-width: 2ch;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+ 
+  &__hasta {
+    font-weight: 700;
+    color: $color-acento;
+  }
+ 
+  &__barra {
+    position: relative;
+    width: u(8);
+    height: 2px;
+    background: #e4e2f0;
+    border-radius: 2px;
+  }
+ 
+  &__relleno {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 20%; 
+    background: $color-acento;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+}
+ 
+
+.tarjeta {
+  flex: 0 0 var(--ancho-tarjeta);
+  padding: u(1.6);
+  background: #fafafa;
+  border: 1px solid transparent;
+  border-radius: u(0.3);
+  box-shadow: 0 u(0.4) u(1.8) rgba(30, 30, 60, 0.07);
+  cursor: pointer;
+  opacity: 0;                 
+  pointer-events: none;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 0.8, 0.3, 1),
+    opacity 0.4s,
+    background 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+ 
+  
+  &.is-vecina {
+    opacity: 1;
+    pointer-events: auto;
+  }
+ 
+  
+  &.is-activa {
+    opacity: 1;
+    pointer-events: auto;
+    background: #fff;
+    border-color: $color-borde;
+    box-shadow: 0 u(0.8) u(2.4) rgba($color-acento, 0.16);
+    transform: translateY(u(2.6));
+    cursor: default;
+  }
+ 
+  &__icono {
+    display: grid;
+    place-items: center;
+    width: u(4);
+    height: u(4);
+    min-width: 32px;
+    min-height: 32px;
+    margin-bottom: u(1.5);
+    border: 1px solid $color-anillo;
+    border-radius: 50%;
+    color: $color-icono;
+ 
+    svg {
+      width: 52%;
+      height: 52%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+ 
+  &__titulo {
+    margin: 0 0 u(0.9);
+    font-size: u(1.5);
+    font-weight: 600;
+    line-height: 1.25;
+    color: $color-titulo;
+    transition: color 0.3s;
+  }
+ 
+  &__texto {
+    margin: 0;
+    font-size: u(1.05);
+    line-height: 1.65;
+    color: $color-texto;
+  }
+ 
+  &.is-activa &__titulo {
+    color: $color-acento;
+  }
+}
+ 
+// ---------- Celular: una tarjeta por vez ----------
+@media (max-width: $breakpoint-movil) {
+  .carrusel {
+    --ancho-tarjeta: min(78vw, 320px);
+    --separacion: 16px;
+ 
+    padding: 40px 0 32px;
+ 
+    &__titulo {
+      margin-bottom: 28px;
+      font-size: 1.6rem;
+    }
+ 
+    &__ventana {
+      width: 100%;
+      padding: 8px 0 24px;
+    }
+ 
+    &__controles {
+      flex-direction: column;
+      gap: 16px;
+    }
+ 
+    &__progreso {
+      position: static;
+      transform: none;
+    }
+ 
+    &__progreso {
+      font-size: 0.8rem;
+      gap: 10px;
+    }
+ 
+    &__barra {
+      width: 70px;
+    }
+  }
+ 
+  .tarjeta {
+    padding: 20px;
+ 
+    // en celular se asoman las vecinas, atenuadas
+    &.is-vecina {
+      opacity: 0.45;
+    }
+ 
+    &.is-activa {
+      transform: none;
+    }
+ 
+    &__icono {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 16px;
+    }
+ 
+    &__titulo {
+      font-size: 1.05rem;
+    }
+ 
+    &__texto {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+$fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$color-titulo: #1c2434;
+$color-texto: #6b7694;
+$color-resalte: #E4661B;
+$color-boton: #EA4335;
+$color-linea-1: #E4661B;
+$color-linea-2: #EA4335;
+$breakpoint-movil: 760px;
+ 
+
+@function u($n) {
+  @return calc(#{$n} * min(1vw, 19px));
+}
+ 
+// ---------- Sobre nosotros ----------
+.sobre {
+  padding: u(4.5) u(2.5) u(8);
+  font-family: $fuente;
+  background: #fff;
+  border-top: 1px solid #eceaf5;
+ 
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+ 
+  &__titulo {
+    margin: 0 0 u(7);
+    text-align: center;
+    font-size: u(4.8);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: $color-titulo;
+  }
+ 
+ 
+  &__contenido {
+    max-width: u(40);
+    margin: 0 auto;
+  }
+ 
+  &__linea {
+    display: block;
+    width: u(4.8);
+    height: u(0.35);
+    min-height: 3px;
+    margin-bottom: u(2);
+    border-radius: 2px;
+    background: linear-gradient(90deg, $color-linea-1, $color-linea-2);
+  }
+ 
+  &__lema {
+    margin: 0 0 u(1.2);
+    font-size: u(1.6);
+    font-weight: 600;
+    line-height: 1.3;
+    color: $color-titulo;
+  }
+ 
+  &__texto {
+    margin: 0 0 u(1.4);
+    font-size: u(1.15);
+    line-height: 2;
+    color: $color-texto;
+  }
+ 
+  &__resalte {
+    color: $color-resalte;
+  }
+ 
+  // Botón con flecha
+  &__boton {
+    display: inline-flex;
+    align-items: center;
+    gap: u(0.8);
+    margin-top: u(2.2);
+    font-size: u(1.15);
+    font-weight: 600;
+    color: $color-boton;
+    text-decoration: none;
+ 
+    svg {
+      width: 1.3em;
+      height: 1.3em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.25s;
+    }
+ 
+    &:hover svg {
+      transform: translateX(5px);
+    }
+ 
+    &:focus-visible {
+      outline: 2px solid $color-resalte;
+      outline-offset: 5px;
+      border-radius: 3px;
+    }
+  }
+}
+
+
+//carrusel logos
+
+
+$fondo: #f4f4f7;
+$color-acento: #EA4335;
+$color-anillo: #EA4335;
+$breakpoint-movil: 760px;
+ 
+
+@function u($n) {
+  @return calc(#{$n} * min(1vw, 19px));
+}
+ 
+.logos {
+  position: relative;
+  width: 100%;
+  background: $fondo;
+ 
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+ 
+  &__ventana {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    cursor: grab;
+    outline-offset: -3px;
+ 
+    &::-webkit-scrollbar {
+      display: none;
+    }
+ 
+    &.is-arrastrando {
+      cursor: grabbing;
+      user-select: none;
+    }
+  }
+ 
+  &__pista {
+    display: flex;
+    align-items: center;
+    gap: u(5.5);
+    width: max-content;
+    margin: 0;
+    padding: u(4.5) u(6.5); 
+    list-style: none;
+  }
+ 
+  &__item {
+    flex: none;
+    margin: 0;
+    padding: 0;
+ 
+    img {
+      display: block;
+      height: u(3.4);
+      width: auto;
+      max-width: none;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+  }
+ 
+
+  &__flecha {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: u(2.2);
+    height: u(2.2);
+    min-width: 30px;
+    min-height: 30px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid $color-anillo;
+    border-radius: 50%;
+    background: #fff;
+    color: $color-acento;
+    cursor: pointer;
+    transform: translateY(-50%);
+    box-shadow: 0 u(0.3) u(1) rgba(30, 30, 60, 0.08);
+    transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+ 
+    svg {
+      width: 48%;
+      height: 48%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+ 
+    &--prev {
+      left: u(1.5);
+    }
+ 
+    &--next {
+      right: u(1.5);
+    }
+ 
+    &:hover:not(:disabled) {
+      background: $color-acento;
+      border-color: $color-acento;
+      color: #fff;
+    }
+ 
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+ 
+    &:focus-visible {
+      outline: 2px solid $color-acento;
+      outline-offset: 3px;
+    }
+  }
+ 
+  &.sin-desborde &__flecha {
+    display: none;
+  }
+ 
+  &.sin-desborde &__pista {
+    width: 100%;
+    justify-content: center;
+  }
+}
+ 
+
+@media (max-width: 760px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 32px 20px 60px;
+  }
+ 
+  .hero__contenido {
+    flex: none;
+    width: 100%;
+  }
+ 
+  .hero__titulo,
+  .hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+  }
+ 
+  .hero__subtitulo,
+  .hero p {
+    font-size: 1.1rem;
+    margin-bottom: 28px;
+  }
+ 
+  .hero__boton,
+  .hero__contenido a {
+    font-size: 0.9rem;
+    border-radius: 4px;
+  }
+ 
+  .hero__titulo br,
+  .hero__subtitulo br {
+    display: none;
+  }
+ 
+  .hero__imagen {
+    flex: none;
+    width: 100%;
+  }
+}
+
+$fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$color-titulo: #1c2434;
+$color-texto: #6b7694;
+$color-comilla: #EA4335;
+$color-linea-1: #EA4335;
+$color-linea-2: #EA4335;
+$breakpoint-movil: 760px;
+ 
+
+@function u($n) {
+  @return calc(#{$n} * min(1vw, 19px));
+}
+ 
+.feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: u(12) u(2.5) u(10);
+  font-family: $fuente;
+  background: #fff;
+ 
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+ 
+  // Línea de acento sobre el título
+  &__linea {
+    display: block;
+    width: u(4.8);
+    height: u(0.35);
+    min-height: 3px;
+    margin-bottom: u(1.6);
+    border-radius: 2px;
+    background: linear-gradient(90deg, $color-linea-1, $color-linea-2);
+  }
+ 
+  &__titulo {
+    margin: 0 0 u(8.5);
+    text-align: center;
+    font-size: u(2.45);
+    font-weight: 400;
+    line-height: 1.2;
+    color: $color-titulo;
+  }
+ 
+  // Texto centrado con una comilla arriba a la izquierda y otra abajo a la derecha
+  &__cuerpo {
+    position: relative;
+    width: 100%;
+    max-width: u(34);
+  }
+ 
+  &__texto {
+    margin: 0;
+    text-align: center;
+    font-size: u(1.25);
+    line-height: 2;
+    color: $color-texto;
+  }
+ 
+  &__comilla {
+    position: absolute;
+    width: u(1.1);
+    height: u(1.75);
+    fill: $color-comilla;
+ 
+    // la de apertura es la de cierre girada
+    &--abre {
+      top: u(-0.2);
+      left: u(-6.5);
+      transform: rotate(180deg);
+    }
+ 
+    &--cierra {
+      right: u(-6.5);
+      bottom: u(2.8);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrusel__pista,
+  .carrusel__relleno,
+  .tarjeta {
+    transition: none;
+  }
+}
+
+@media (max-width: $breakpoint-movil) {
+  .sobre {
+    padding: 40px 24px 56px;
+ 
+    &__titulo {
+      margin-bottom: 32px;
+      font-size: 2.1rem;
+    }
+ 
+    &__contenido {
+      max-width: 520px;
+    }
+ 
+    &__linea {
+      width: 40px;
+      margin-bottom: 16px;
+    }
+ 
+    &__lema {
+      font-size: 1.2rem;
+    }
+ 
+    &__texto {
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+ 
+    &__boton {
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+  }
+}
+@media (max-width: $breakpoint-movil) {
+  .logos {
+    &__pista {
+      gap: 32px;
+      padding: 24px 52px;
+    }
+ 
+    &__item img {
+      height: 28px;
+    }
+ 
+    &__flecha {
+      width: 30px;
+      height: 30px;
+ 
+      &--prev {
+        left: 10px;
+      }
+ 
+      &--next {
+        right: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-movil) {
+  .feedback {
+    padding: 64px 24px 56px;
+ 
+    &__linea {
+      width: 40px;
+      margin-bottom: 14px;
+    }
+ 
+    &__titulo {
+      margin-bottom: 40px;
+      font-size: 1.6rem;
+    }
+ 
+    &__cuerpo {
+      max-width: 520px;
+      padding: 0 28px;
+    }
+ 
+    &__texto {
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+ 
+    &__comilla {
+      width: 12px;
+      height: 19px;
+ 
+      &--abre {
+        top: 4px;
+        left: 4px;
+      }
+ 
+      &--cierra {
+        right: 4px;
+        bottom: 6px;
+      }
+    }
+  }
+}
