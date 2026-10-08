@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const visitsElement = document.querySelector('[data-zonalis-visits]');
   if (!visitsElement) return;
 
-  // Evita contar visitas duplicadas al recargar la pestaña (F5)
   const sessionKey = `visited_${slug}`;
   const alreadyCounted = sessionStorage.getItem(sessionKey);
   const shouldIncrement = !alreadyCounted;

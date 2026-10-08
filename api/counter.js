@@ -30,14 +30,12 @@ module.exports = async function handler(req, res) {
     const shouldIncrement = increment === 'true' || increment === '1';
 
     if (shouldIncrement) {
-      // Suma 1 a nivel global en la base de datos
       const response = await fetch(`${kvUrl}/incr/${encodeURIComponent(key)}`, {
         headers: { Authorization: `Bearer ${kvToken}` }
       });
       const data = await response.json();
       visits = data.result || 0;
     } else {
-      // Consulta el valor actual sin sumar
       const response = await fetch(`${kvUrl}/get/${encodeURIComponent(key)}`, {
         headers: { Authorization: `Bearer ${kvToken}` }
       });

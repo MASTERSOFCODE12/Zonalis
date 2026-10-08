@@ -14,9 +14,12 @@
  
     <nav class="header__nav" aria-label="Navegación principal">
         <a href="../index.html">Inicio</a>
-        <a href="comercios.html">Comercios</a>
-        <a href="Nosotros.html">Nosotros</a>
-        <a href="comofunciona.html">Cómo funciona</a>
+        <a href="../pages/comercios.html">Comercios</a>
+        <a href="../pages/Nosotros.html">Nosotros</a>
+        <a href="../pages/comofunciona.html">Cómo funciona</a>
+        <a href="#favoritos" class="header__link-favoritos" id="btnAbrirFavoritos">
+        ❤️ Favoritos (<span id="cantFavoritos">0</span>)
+    </a>
     </nav>
  
     <a href="#login" class="header__boton">Registrarse / Loguearse</a>
@@ -35,11 +38,6 @@
  
       <div class="zonalis-business__identity">
         <figure class="zonalis-business__logo">
-          <!--
-            PARA PONER LA FOTO: reemplazá el <span class="zonalis-business__logo-placeholder">...</span>
-            por esta línea (cambiá la ruta por la de tu imagen):
-            <img src="img/comercios/landis.jpg" alt="Logo de Nombre del comercio">
-          -->
           <img src="../images/tiendastr.png" alt="Logo de Nombre del comercio">
         </figure>
  
@@ -63,6 +61,10 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5z"/></svg>
               Enviar WhatsApp
             </a>
+            <button type="button" class="zonalis-business__button zonalis-business__button--outline" id="btnFavorito">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg>
+              Favoritos
+            </button>
           </div>
         </div>
       </div>
@@ -93,7 +95,7 @@
       <!-- Columna lateral -->
       <aside class="zonalis-business__side">
  
-        <!-- Estadísticas (las completa zonalis-estadisticas.js) -->
+
         <section class="zonalis-business__stats" data-zonalis-estadisticas="SLUG-DEL-COMERCIO" aria-labelledby="zonalis-business-stats-title">
           <h2 class="zonalis-business__stats-title" id="zonalis-business-stats-title">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg>
@@ -151,11 +153,6 @@
     <section class="zonalis-business__container zonalis-business__reviews" aria-labelledby="zonalis-business-reviews-title">
       <h2 class="zonalis-business__reviews-title" id="zonalis-business-reviews-title">Reseñas de Google</h2>
       <div class="zonalis-business__reviews-widget">
-        <!--
-          IMPORTANTE: cada comercio necesita SU PROPIO widget en Elfsight.
-          Cambiá el id que está después de "elfsight-app-" por el del widget de este comercio.
-          Si dejás el mismo id en todas las páginas, todos van a mostrar las mismas reseñas.
-        -->
         <script src="https://elfsightcdn.com/platform.js" async></script>
         <div class="elfsight-app-5de8d8ef-3fd4-4581-bdf8-311466755fea" data-elfsight-app-lazy></div>
       </div>
@@ -167,5 +164,6 @@
 
 
 <script src="../js/zonalis-estadisticas.js" defer></script>
+<script src="../js/zonalis-auth.js" defer></script>
 </body>
 </html>
