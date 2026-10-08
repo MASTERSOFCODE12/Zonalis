@@ -106,6 +106,14 @@ function bindEvents() {
   const authOverlay = document.getElementById('authOverlay');
   const favsOverlay = document.getElementById('favsOverlay');
 
+  document.addEventListener('click', (e) => {
+    const boton = e.target.closest('.header__boton');
+    if (boton && (!currentUser || boton.getAttribute('href') === '#login')) {
+      e.preventDefault();
+      authOverlay.classList.add('active');
+    }
+  });
+
   document.getElementById('closeAuth').onclick = () => authOverlay.classList.remove('active');
   document.getElementById('closeFavs').onclick = () => favsOverlay.classList.remove('active');
 
