@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Zonalis - TiendaSantaRita</title>
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-        <header class="header" id="site-header">
-    <a href="#inicio" class="header__logo">
-        <img src="../images/zonalisheader.png" alt="Zonalis">
+<header class="header" id="site-header">
+  <a href="#inicio" class="header__logo">
+    <img src="../images/zonalisheader.png" alt="Zonalis">
+  </a>
+
+  <button class="header__hamburger" id="btnHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="header__nav" id="mainNav" aria-label="Navegación principal">
+    <a href="../index.html">Inicio</a>
+    <a href="../pages/comercios.html">Comercios</a>
+    <a href="../pages/Nosotros.html">Nosotros</a>
+    <a href="../pages/comofunciona.html">Cómo funciona</a>
+    <a href="">Alquileres</a>
+    <a href="">Ventas</a>
+    <a href="">Cuponeras</a>
+    <a href="#favoritos" class="header__link-favoritos" id="btnAbrirFavoritos">
+      Favoritos (<span id="cantFavoritos">0</span>)
     </a>
- 
-    <nav class="header__nav" aria-label="Navegación principal">
-        <a href="../index.html">Inicio</a>
-        <a href="../pages/comercios.html">Comercios</a>
-        <a href="../pages/Nosotros.html">Nosotros</a>
-        <a href="../pages/comofunciona.html">Cómo funciona</a>
-        <a href="#favoritos" class="header__link-favoritos" id="btnAbrirFavoritos">
-        ❤️ Favoritos (<span id="cantFavoritos">0</span>)
-    </a>
-    </nav>
- 
-    <a href="#login" class="header__boton">Registrarse / Loguearse</a>
+
+    <a href="#login" class="header__boton header__boton--mobile">Registrarse / Loguearse</a>
+  </nav>
+
+
+  <a href="#login" class="header__boton header__boton--desktop">Registrarse / Loguearse</a>
 </header>
 
   <main class="zonalis-business" data-zonalis-visita="tienda-santa-rita">
@@ -165,5 +177,6 @@
 
 <script src="../js/zonalis-estadisticas.js" defer></script>
 <script src="../js/auth.js" defer></script>
+<script src="../js/hamburgesa.js"></script>
 </body>
 </html>

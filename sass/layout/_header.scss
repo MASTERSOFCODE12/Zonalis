@@ -1,126 +1,217 @@
 // ---------- Variables ----------
 $fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-$color-texto: #374151;
-$color-hover: #e8681a;
-$color-boton: #ef4136;
-$color-boton-hover: #d6342a;
-$breakpoint-movil: 760px;
- 
-// Unidad que escala con el ancho de pantalla (tope en 19px).
-// u(2.6) = 2.6 veces esa unidad.
-@function u($n) {
-  @return calc(#{$n} * min(1vw, 19px));
-}
- 
+$color-texto: #2d3748;
+$color-texto-hover: #ef4136;
+$color-boton-inicio: #ef4136;
+$color-boton-fin: #d6342a;
+$breakpoint-tablet: 1080px; // Se activa en tablets para evitar que los 8 links se choquen
+
 // ---------- Header ----------
-// Se usa #site-header para que tenga prioridad sobre otros estilos.
 #site-header {
-  display: grid;
-  // logo | links (centrados) | botón
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   width: 100%;
-  margin: 0;
-  padding: u(1.4) u(1);
+  background: #ffffff;
+  border-bottom: 1px solid #edf0f5;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   font-family: $fuente;
-  background: #fff;
-  border-bottom: 1px solid #f0f0f5;
-  box-shadow: 0 u(0.3) u(1.2) rgba(0, 0, 0, 0.05);
- 
+
+  // Distribución y tamaño general
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 2.8rem; // Altura equilibrada y cómoda
+  gap: 2rem;
+
   &,
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
- 
-  // 1) Logo (izquierda)
+
+  // 1) Logo
   .header__logo {
     display: flex;
     align-items: center;
-    justify-self: start;
+    text-decoration: none;
+    flex-shrink: 0;
+
+    img {
+      height: 44px; // Tamaño con buena presencia y definición
+      width: auto;
+      display: block;
+    }
   }
- 
-  img {
-    display: block;
-    height: u(2.6);
-    width: auto;
-    margin: 0;
-  }
- 
-  // 2) Links (centrados y más juntos; para separarlos o juntarlos más, cambiá el gap)
+
+  // 2) Navegación en PC
   .header__nav {
     display: flex;
     align-items: center;
-    justify-self: center;
-    gap: u(4.2);
- 
+    gap: 1.8rem; // Buen espacio entre links
+
     a {
-      font-size: u(1.2);
-      font-weight: 400;
+      font-size: 1rem; // ~16px, legible y claro
+      font-weight: 550;
       color: $color-texto;
       text-decoration: none;
-      transition: color 0.2s;
- 
+      white-space: nowrap;
+      padding: 0.3rem 0;
+      transition: color 0.18s ease;
+
       &:hover {
-        color: $color-hover;
+        color: $color-texto-hover;
       }
     }
+
+    // Badge contador de favoritos
+    #cantFavoritos {
+      background-color: #f1f3f7;
+      color: #1a202c;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-left: 2px;
+    }
+
+    .header__boton--mobile {
+      display: none;
+    }
   }
- 
-  // 3) Botón (derecha)
+
+  // 3) Botón Registrarse / Loguearse
   .header__boton {
-    justify-self: end;
-    display: inline-block;
-    padding: 0.95em 1.7em;
-    background: $color-boton;
-    color: #fff;
-    font-size: u(1.04);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.6rem; // Tamaño visible y cómodo
+    background: linear-gradient(135deg, $color-boton-inicio 0%, $color-boton-fin 100%);
+    color: #ffffff;
+    font-size: 0.95rem;
     font-weight: 600;
     line-height: 1;
     text-decoration: none;
     white-space: nowrap;
-    border-radius: u(0.37);
-    transition: background 0.2s;
- 
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(239, 65, 54, 0.28);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    flex-shrink: 0;
+
     &:hover {
-      background: $color-boton-hover;
+      filter: brightness(1.04);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(239, 65, 54, 0.38);
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
- 
-  a:focus-visible {
-    outline: 3px solid #1c2434;
-    outline-offset: 3px;
-  }
- 
-  // ---------- Celular ----------
-  @media (max-width: $breakpoint-movil) {
-    grid-template-columns: 1fr auto;
-    row-gap: 12px;
-    padding: 12px 20px;
- 
-    img {
-      height: 28px;
+
+  // 4) Botón Hamburguesa (Oculto en PC)
+  .header__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 8px;
+
+    span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      margin: 0 auto;
+      background-color: #1a202c;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.2s ease;
     }
- 
-    .header__nav {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      justify-self: center;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px 18px;
- 
-      a {
-        font-size: 0.9rem;
+
+    &:hover {
+      background-color: #f8fafc;
+    }
+
+    // Animación a 'X' al abrirse
+    &.is-active {
+      span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
       }
     }
- 
-    .header__boton {
-      grid-column: 2;
-      grid-row: 1;
-      font-size: 0.75rem;
-      border-radius: 4px;
+  }
+
+  // ---------- Responsive (Tablets y Celulares <= 1080px) ----------
+  @media (max-width: $breakpoint-tablet) {
+    padding: 0.8rem 1.5rem;
+
+    .header__logo img {
+      height: 38px;
+    }
+
+    .header__hamburger {
+      display: flex; // Visible en tablets y celulares
+    }
+
+    .header__boton--desktop {
+      display: none;
+    }
+
+    // Menú desplegable
+    .header__nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 1.2rem 1.8rem 1.8rem;
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+
+      // Oculto por defecto
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+
+      // Abierto
+      &.is-active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      a {
+        padding: 0.9rem 0.5rem;
+        font-size: 1.05rem;
+        border-bottom: 1px solid #f3f4f6;
+
+        &:hover {
+          background-color: #f9fafb;
+          padding-left: 0.8rem;
+        }
+      }
+
+      .header__boton--mobile {
+        display: inline-flex;
+        margin-top: 1.2rem;
+        width: 100%;
+        text-align: center;
+      }
     }
   }
 }

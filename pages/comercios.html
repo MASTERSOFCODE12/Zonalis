@@ -9,23 +9,128 @@
 </head>
 <body>
 <header class="header" id="site-header">
-    <a href="#inicio" class="header__logo">
-        <img src="../images/zonalisheader.png" alt="Zonalis">
+  <a href="#inicio" class="header__logo">
+    <img src="../images/zonalisheader.png" alt="Zonalis">
+  </a>
+
+  <button class="header__hamburger" id="btnHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="header__nav" id="mainNav" aria-label="Navegación principal">
+    <a href="../index.html">Inicio</a>
+    <a href="#comercios">Comercios</a>
+    <a href="/pages/Nosotros.html">Nosotros</a>
+    <a href="/pages/comofunciona.html">Cómo funciona</a>
+    <a href="">Alquileres</a>
+    <a href="">Ventas</a>
+    <a href="">Cuponeras</a>
+    <a href="#favoritos" class="header__link-favoritos" id="btnAbrirFavoritos">
+      Favoritos (<span id="cantFavoritos">0</span>)
     </a>
- 
-    <nav class="header__nav" aria-label="Navegación principal">
-        <a href="../index.html">Inicio</a>
-        <a href="comercios.html">Comercios</a>
-        <a href="Nosotros.html">Nosotros</a>
-        <a href="comofunciona.html">Cómo funciona</a>
-        <a href="#favoritos" class="header__link-favoritos" id="btnAbrirFavoritos">
-        ❤️ Favoritos (<span id="cantFavoritos">0</span>)
-        </a>
-    </nav>
- 
-    <a href="#login" class="header__boton">Registrarse / Loguearse</a>
+
+    <a href="#login" class="header__boton header__boton--mobile">Registrarse / Loguearse</a>
+  </nav>
+
+
+  <a href="#login" class="header__boton header__boton--desktop">Registrarse / Loguearse</a>
 </header>
 
+<main class="comercios-main">
+        <!-- Encabezado y Filtros -->
+        <section class="comercios-header">
+            <div class="icono-tienda">🏪</div>
+            <h1>Comercios Locales en Mendoza</h1>
+            <p>Encontrá y apoyá a los profesionales y comercios de tu zona.</p>
+
+            <div class="filtros-busqueda">
+                <div class="contenedor-buscador">
+                    <span class="icono-lupa">🔍</span>
+                    <input type="text" id="buscadorComercios" placeholder="Buscar por nombre, departamento o palabra clave...">
+                </div>
+                
+                <select id="filtroCategoria" class="select-categoria">
+                    <option value="todos">Todas las categorías</option>
+                    <option value="moda">Moda e Indumentaria</option>
+                    <option value="profesional">Servicios Profesionales</option>
+                    <option value="gastronomia">Gastronomía</option>
+                    <option value="mascotas">Mascotas y Veterinarias</option>
+                </select>
+            </div>
+        </section>
+
+
+        <section class="comercios-grid" id="listaComercios">
+            
+
+            <article class="comercio-card" data-categoria="moda">
+                <div class="card-imagen">
+                    <span class="categoria-badge">Moda e Indumentaria</span>
+                    <img src="../images/tiendastr.png" alt="Fachada del comercio" class="img-comercio">
+                </div>
+                <div class="card-contenido">
+                    <h2>"Tienda Santa Rita"</h2>
+                    <p class="descripcion">Venta de indumentaria de temporada para todas las edades. Trabajamos con marcas exclusivas.</p>
+                    <p class="dato">📍 Pellegrini 57, Tunuyán</p>
+                    <p class="dato">📞 +54 9 2622 543839</p>
+                    <div class="card-footer">
+                        <a href="../pages-comercios/tienda_santa_rita.html" class="btn-detalles">Ver más detalles ➔</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="comercio-card" data-categoria="profesional">
+                <div class="card-imagen">
+                    <span class="categoria-badge">Servicios Profesionales</span>
+                    <div class="imagen-placeholder">
+                        <span>ZONALIS</span>
+                    </div>
+                </div>
+                <div class="card-contenido">
+                    <h2>comercio2</h2>
+                    <p class="descripcion">comercio2</p>
+                    <p class="dato">📍 comercio2</p>
+                    <p class="dato">📞 +54 0000000000</p>
+                    <div class="card-footer">
+                        <a href="comercio2.html" class="btn-detalles">Ver más detalles ➔</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="comercio-card" data-categoria="gastronomia">
+                <div class="card-imagen">
+                    <span class="categoria-badge">Gastronomía</span>
+                    <div class="imagen-placeholder">
+                        <span>ZONALIS</span>
+                    </div>
+                </div>
+                <div class="card-contenido">
+                    <h2>comercio3</h2>
+                    <p class="descripcion">Comercio2</p>
+                    <p class="dato">📍 comercio 3</p>
+                    <p class="dato">📞 +54 000000000</p>
+                    <div class="card-footer">
+                        <a href="comercio3.html" class="btn-detalles">Ver más detalles ➔</a>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+
+        <section class="cta-banner">
+            <h2>¿Tenés un comercio en Mendoza?</h2>
+            <p>Sumate a Zonalis y hacé que más personas te encuentren de forma directa y sin comisiones.</p>
+            <a href="registro.html" class="btn-registro">🏪 Registrar mi comercio gratis</a>
+        </section>
+    </main>
+
 <script src="../js/auth.js" defer></script>
+<script src="../js/hamburgesa.js"></script>
+<script src="../js/script.js"></script>
 </body>
 </html>

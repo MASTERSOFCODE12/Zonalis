@@ -1,162 +1,244 @@
-:root {
-  --color-titulo: #1c2434;
-  --color-texto: #4a5568;
-  --color-boton: #e8681a;
-  --color-boton-hover: #cf5a12;
- 
-  /* Cuando tengas la fuente, cambiá esta línea */
-  --fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
- 
-  /* Unidad base: el hero escala con el ancho de pantalla, igual que el diseño.
-     Si lo ves muy grande en pantallas anchas, bajá el 19px (ej: 15px). */
-  --u: min(1vw, 19px);
-}
- 
-/* ---------- Hero: ocupa todo el ancho, texto a la izquierda e imagen a la derecha ---------- */
-.hero,
-.hero *,
-.hero *::before,
-.hero *::after {
-  box-sizing: border-box;
-}
- 
-.hero {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin: 0;
-  padding: calc(5 * var(--u)) calc(2.5 * var(--u)) calc(5 * var(--u));
-  font-family: var(--fuente);
-  background: #fff;
-}
- 
-/* Columna de texto (izquierda) */
-.hero__contenido {
-  flex: 0 0 57%;
-}
- 
-.hero__titulo,
-.hero h1 {
-  margin: 0 0 calc(2 * var(--u));
-  font-size: calc(4.3 * var(--u));
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  color: var(--color-titulo);
-}
- 
-.hero__subtitulo,
-.hero p {
-  margin: 0 0 calc(3.8 * var(--u));
-  font-size: calc(1.5 * var(--u));
-  font-weight: 400;
-  line-height: 1.15;
-  color: var(--color-texto);
-}
- 
-/* Botón (funciona aunque la clase se llame distinto, porque apunta al <a> del hero) */
-.hero__boton,
-.hero__contenido a {
-  display: inline-block;
-  padding: 1.17em 1.95em;
-  background: var(--color-boton);
-  color: #fff;
-  font-size: calc(1.07 * var(--u));
-  font-weight: 600;
-  line-height: 1;
-  text-decoration: none;
-  border-radius: calc(0.35 * var(--u));
-  box-shadow: 0 calc(0.8 * var(--u)) calc(2 * var(--u)) rgba(232, 104, 26, 0.3);
-  transition: background 0.2s, transform 0.2s;
-}
- 
-.hero__boton:hover,
-.hero__contenido a:hover {
-  background: var(--color-boton-hover);
-  transform: translateY(-2px);
-}
- 
-.hero__boton:focus-visible,
-.hero__contenido a:focus-visible {
-  outline: 3px solid var(--color-titulo);
-  outline-offset: 3px;
-}
- 
-/* Columna de imagen (derecha): toma todo el espacio que sobra */
-.hero__imagen {
-  flex: 1 1 0;
-  min-width: 0;
-}
- 
-.hero__imagen img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
 
-// ---------- Variables ----------
 $fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-$fondo: #f8f7ff;
+
+// Paleta oficial Zonalis
+$color-primario: #ef4136;
+$color-secundario: #e8681a;
+$color-primario-oscuro: #d6342a;
+$gradiente-marca: linear-gradient(135deg, $color-primario 0%, $color-primario-oscuro 100%);
+$gradiente-calido: linear-gradient(135deg, $color-primario 0%, $color-secundario 100%);
+$gradiente-fondo-tarjeta: linear-gradient(135deg, rgba(239, 65, 54, 0.08) 0%, rgba(232, 104, 26, 0.14) 100%);
+
+// Textos y Fondos
 $color-titulo: #1c2434;
-$color-texto: #6b7280;
-$color-acento: #EA4335;        // morado de la tarjeta activa y los puntos
-$color-borde: #EA4335;         // borde de la tarjeta activa
-$color-icono: #2d3748;
-$color-anillo: #EA4335;        // círculo alrededor del ícono
-$breakpoint-movil: 760px;
- 
-// Unidad que escala con el ancho de pantalla (tope en 19px)
-@function u($n) {
-  @return calc(#{$n} * min(1vw, 19px));
-}
- 
-// ---------- Carrusel ----------
-.carrusel {
-  --ancho-tarjeta: #{u(23)};
-  --separacion: #{u(2.7)};
- 
-  padding: u(4.5) 0 u(4);
+$color-texto: #4b5563;
+$color-texto-claro: #6b7280;
+$fondo-neutro: #fafafc;
+$borde-suave: #edf0f5;
+
+// Breakpoints
+$breakpoint-tablet: 1024px;
+$breakpoint-movil: 768px;
+
+// 1. HERO SECTION
+
+.hero {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, #fffaf9 0%, #ffffff 100%);
+  padding: 4rem 2rem 5rem;
+  overflow: hidden;
   font-family: $fuente;
-  background: $fondo;
- 
+
   &,
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
- 
-  &__titulo {
-    margin: 0 0 u(4.5);
-    text-align: center;
-    font-size: u(2.5);
-    font-weight: 700;
-    line-height: 1.2;
-    color: $color-titulo;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1320px;
+  margin: 0 auto;
+  gap: 3.5rem;
+
+  &__contenido {
+    flex: 1 1 54%;
+    max-width: 640px;
   }
- 
-  // Zona visible: justo 3 tarjetas (con un poco de aire para las sombras)
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.95rem;
+    background: rgba(239, 65, 54, 0.08);
+    border: 1px solid rgba(239, 65, 54, 0.18);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $color-primario;
+    margin-bottom: 1.5rem;
+
+    &-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: $color-primario;
+      box-shadow: 0 0 0 3px rgba(239, 65, 54, 0.2);
+    }
+  }
+
+  &__titulo {
+    margin: 0 0 1.25rem;
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: $color-titulo;
+
+    &-resalte {
+      background: $gradiente-calido;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+  }
+
+  &__subtitulo {
+    margin: 0 0 2.2rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: $color-texto;
+  }
+
+  &__acciones {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .boton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.85rem;
+    background: $gradiente-marca;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(239, 65, 54, 0.28);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {
+      filter: brightness(1.04);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(239, 65, 54, 0.38);
+
+      svg {
+        transform: translateX(3px);
+      }
+    }
+  }
+
+  &__garantia {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: $color-texto-claro;
+    margin-top: 1rem;
+
+    svg {
+      color: #10b981;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__imagen {
+    flex: 1 1 46%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 540px;
+      height: auto;
+      border-radius: 22px;
+      box-shadow: 0 20px 40px -15px rgba(28, 36, 52, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      object-fit: cover;
+    }
+  }
+}
+
+// 2. CARRUSEL: NUESTRAS OPCIONES
+
+.carrusel {
+  --ancho-tarjeta: 360px;
+  --separacion: 26px;
+
+  padding: 5rem 1.5rem 5rem;
+  font-family: $fuente;
+  background: $fondo-neutro;
+  border-top: 1px solid $borde-suave;
+  border-bottom: 1px solid $borde-suave;
+
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  &__cabecera {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 3.5rem;
+  }
+
+  &__etiqueta {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-primario;
+    margin-bottom: 0.5rem;
+  }
+
+  &__titulo {
+    margin: 0 0 0.75rem;
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: $color-titulo;
+    letter-spacing: -0.02em;
+  }
+
+  &__bajada {
+    margin: 0;
+    font-size: 1.05rem;
+    color: $color-texto;
+    line-height: 1.5;
+  }
+
   &__ventana {
-    width: calc(3 * var(--ancho-tarjeta) + 2 * var(--separacion) + #{u(3)});
+    width: calc(3 * var(--ancho-tarjeta) + 2 * var(--separacion) + 40px);
     max-width: 100%;
     margin: 0 auto;
-    padding: u(1) u(1.5) u(4);
+    padding: 1.5rem 1rem 3rem;
     overflow: hidden;
-    outline-offset: 4px;
+    outline: none;
   }
- 
-  // La pista se desplaza para dejar la tarjeta activa en el centro
+
   &__pista {
-    --i: 0; // índice de la tarjeta activa (lo cambia el JS)
- 
+    --i: 0;
     display: flex;
     gap: var(--separacion);
     padding-inline: calc(50% - var(--ancho-tarjeta) / 2);
     transform: translateX(calc(var(--i) * -1 * (var(--ancho-tarjeta) + var(--separacion))));
     transition: transform 0.5s cubic-bezier(0.22, 0.8, 0.3, 1);
   }
- 
-  // ---------- Controles ----------
+
   &__controles {
     position: relative;
     display: flex;
@@ -166,95 +248,75 @@ $breakpoint-movil: 760px;
     max-width: 100%;
     margin: 0 auto;
   }
- 
-  // flecha izquierda + puntitos + flecha derecha, siempre centrados
+
   &__nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: u(1.6);
+    gap: 1.5rem;
   }
- 
+
   &__puntos {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: u(0.9);
-    margin: 0;
-    padding: 0;
+    gap: 0.65rem;
   }
- 
+
   &__punto {
-    flex: none;
-    width: u(0.85);
-    height: u(0.85);
-    min-width: 8px;
-    min-height: 8px;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #c9c7d6;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
+    border: 1.5px solid #d1d5db;
     background: transparent;
     cursor: pointer;
-    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
- 
+    padding: 0;
+    transition: all 0.25s ease;
+
     &.is-activo {
-      border-color: $color-acento;
-      background: $color-acento;
-      box-shadow: 0 0 0 3px rgba($color-acento, 0.18);
-    }
- 
-    &:focus-visible {
-      outline: 2px solid $color-acento;
-      outline-offset: 3px;
+      border-color: $color-primario;
+      background: $color-primario;
+      transform: scale(1.2);
+      box-shadow: 0 0 0 3px rgba(239, 65, 54, 0.2);
     }
   }
- 
-  // Botoncitos redondos de izquierda / derecha
+
   &__flecha {
-    flex: none;
     display: grid;
     place-items: center;
-    width: u(2.6);
-    height: u(2.6);
-    min-width: 34px;
-    min-height: 34px;
-    margin: 0;
-    padding: 0;
-    border: 1px solid $color-anillo;
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid #e5e7eb;
     border-radius: 50%;
-    background: #fff;
-    color: $color-acento;
+    background: #ffffff;
+    color: $color-titulo;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
- 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+
     svg {
-      width: 48%;
-      height: 48%;
+      width: 20px;
+      height: 20px;
       fill: none;
       stroke: currentColor;
       stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
- 
+
     &:hover:not(:disabled) {
-      background: $color-acento;
-      border-color: $color-acento;
-      color: #fff;
+      background: $color-primario;
+      border-color: $color-primario;
+      color: #ffffff;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(239, 65, 54, 0.3);
     }
- 
+
     &:disabled {
-      opacity: 0.35;
-      cursor: default;
-    }
- 
-    &:focus-visible {
-      outline: 2px solid $color-acento;
-      outline-offset: 3px;
+      opacity: 0.4;
+      cursor: not-allowed;
     }
   }
- 
+
   &__progreso {
     position: absolute;
     right: 0;
@@ -262,91 +324,76 @@ $breakpoint-movil: 760px;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
-    gap: u(0.8);
-    font-size: u(1.05);
-    font-weight: 500;
-    color: #9ca3af;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $color-texto-claro;
   }
- 
-  &__desde {
-    min-width: 2ch;
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-  }
- 
+
   &__hasta {
+    color: $color-primario;
     font-weight: 700;
-    color: $color-acento;
   }
- 
+
   &__barra {
+    width: 80px;
+    height: 3px;
+    background: #e5e7eb;
+    border-radius: 3px;
     position: relative;
-    width: u(8);
-    height: 2px;
-    background: #e4e2f0;
-    border-radius: 2px;
   }
- 
+
   &__relleno {
     position: absolute;
     inset: 0 auto 0 0;
-    width: 20%; 
-    background: $color-acento;
-    border-radius: 2px;
-    transition: width 0.5s ease;
+    width: 20%;
+    background: $gradiente-marca;
+    border-radius: 3px;
+    transition: width 0.4s ease;
   }
 }
- 
 
+// Tarjeta del Carrusel
 .tarjeta {
   flex: 0 0 var(--ancho-tarjeta);
-  padding: u(1.6);
-  background: #fafafa;
-  border: 1px solid transparent;
-  border-radius: u(0.3);
-  box-shadow: 0 u(0.4) u(1.8) rgba(30, 30, 60, 0.07);
+  padding: 2.2rem 1.8rem;
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  opacity: 0;                 
+  opacity: 0;
   pointer-events: none;
-  transition:
-    transform 0.5s cubic-bezier(0.22, 0.8, 0.3, 1),
-    opacity 0.4s,
-    background 0.3s,
-    border-color 0.3s,
-    box-shadow 0.3s;
- 
-  
+  transition: transform 0.4s cubic-bezier(0.22, 0.8, 0.3, 1), opacity 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+
   &.is-vecina {
-    opacity: 1;
+    opacity: 0.85;
     pointer-events: auto;
   }
- 
-  
+
   &.is-activa {
     opacity: 1;
     pointer-events: auto;
-    background: #fff;
-    border-color: $color-borde;
-    box-shadow: 0 u(0.8) u(2.4) rgba($color-acento, 0.16);
-    transform: translateY(u(2.6));
+    border-color: rgba(239, 65, 54, 0.35);
+    box-shadow: 0 14px 30px rgba(239, 65, 54, 0.12);
+    transform: translateY(-8px);
     cursor: default;
   }
- 
+
   &__icono {
-    display: grid;
+    display: inline-grid;
     place-items: center;
-    width: u(4);
-    height: u(4);
-    min-width: 32px;
-    min-height: 32px;
-    margin-bottom: u(1.5);
-    border: 1px solid $color-anillo;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 1.4rem;
     border-radius: 50%;
-    color: $color-icono;
- 
+    background: rgba(239, 65, 54, 0.09);
+    border: 1px solid rgba(239, 65, 54, 0.18);
+    color: $color-primario;
+
     svg {
-      width: 52%;
-      height: 52%;
+      width: 26px;
+      height: 26px;
       fill: none;
       stroke: currentColor;
       stroke-width: 2;
@@ -354,269 +401,248 @@ $breakpoint-movil: 760px;
       stroke-linejoin: round;
     }
   }
- 
+
   &__titulo {
-    margin: 0 0 u(0.9);
-    font-size: u(1.5);
-    font-weight: 600;
-    line-height: 1.25;
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
     color: $color-titulo;
-    transition: color 0.3s;
+    transition: color 0.2s ease;
   }
- 
+
   &__texto {
     margin: 0;
-    font-size: u(1.05);
-    line-height: 1.65;
+    font-size: 0.95rem;
+    line-height: 1.6;
     color: $color-texto;
   }
- 
+
   &.is-activa &__titulo {
-    color: $color-acento;
-  }
-}
- 
-// ---------- Celular: una tarjeta por vez ----------
-@media (max-width: $breakpoint-movil) {
-  .carrusel {
-    --ancho-tarjeta: min(78vw, 320px);
-    --separacion: 16px;
- 
-    padding: 40px 0 32px;
- 
-    &__titulo {
-      margin-bottom: 28px;
-      font-size: 1.6rem;
-    }
- 
-    &__ventana {
-      width: 100%;
-      padding: 8px 0 24px;
-    }
- 
-    &__controles {
-      flex-direction: column;
-      gap: 16px;
-    }
- 
-    &__progreso {
-      position: static;
-      transform: none;
-    }
- 
-    &__progreso {
-      font-size: 0.8rem;
-      gap: 10px;
-    }
- 
-    &__barra {
-      width: 70px;
-    }
-  }
- 
-  .tarjeta {
-    padding: 20px;
- 
-    // en celular se asoman las vecinas, atenuadas
-    &.is-vecina {
-      opacity: 0.45;
-    }
- 
-    &.is-activa {
-      transform: none;
-    }
- 
-    &__icono {
-      width: 44px;
-      height: 44px;
-      margin-bottom: 16px;
-    }
- 
-    &__titulo {
-      font-size: 1.05rem;
-    }
- 
-    &__texto {
-      font-size: 0.9rem;
-    }
+    color: $color-primario;
   }
 }
 
-$fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-$color-titulo: #1c2434;
-$color-texto: #6b7694;
-$color-resalte: #E4661B;
-$color-boton: #EA4335;
-$color-linea-1: #E4661B;
-$color-linea-2: #EA4335;
-$breakpoint-movil: 760px;
- 
 
-@function u($n) {
-  @return calc(#{$n} * min(1vw, 19px));
-}
- 
-// ---------- Sobre nosotros ----------
+// 3. SECCIÓN SOBRE NOSOTROS (Estilo Acerca de Zonalis)
+
 .sobre {
-  padding: u(4.5) u(2.5) u(8);
+  padding: 5.5rem 2rem;
   font-family: $fuente;
-  background: #fff;
-  border-top: 1px solid #eceaf5;
- 
+  background: #ffffff;
+
   &,
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
- 
-  &__titulo {
-    margin: 0 0 u(7);
-    text-align: center;
-    font-size: u(4.8);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: $color-titulo;
-  }
- 
- 
-  &__contenido {
-    max-width: u(40);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    max-width: 1240px;
     margin: 0 auto;
   }
- 
-  &__linea {
-    display: block;
-    width: u(4.8);
-    height: u(0.35);
-    min-height: 3px;
-    margin-bottom: u(2);
-    border-radius: 2px;
-    background: linear-gradient(90deg, $color-linea-1, $color-linea-2);
+
+  &__col-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
   }
- 
+
+  &__etiqueta {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-primario;
+  }
+
+  &__titulo {
+    margin: 0;
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: $color-titulo;
+    letter-spacing: -0.02em;
+  }
+
   &__lema {
-    margin: 0 0 u(1.2);
-    font-size: u(1.6);
+    margin: 0;
+    font-size: 1.25rem;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.4;
     color: $color-titulo;
   }
- 
+
   &__texto {
-    margin: 0 0 u(1.4);
-    font-size: u(1.15);
-    line-height: 2;
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
     color: $color-texto;
   }
- 
+
   &__resalte {
-    color: $color-resalte;
+    color: $color-primario;
+    font-weight: 600;
   }
- 
-  // Botón con flecha
+
   &__boton {
     display: inline-flex;
     align-items: center;
-    gap: u(0.8);
-    margin-top: u(2.2);
-    font-size: u(1.15);
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: $color-boton;
+    color: $color-primario;
     text-decoration: none;
- 
+    transition: gap 0.2s ease, color 0.2s;
+
     svg {
-      width: 1.3em;
-      height: 1.3em;
+      width: 18px;
+      height: 18px;
       fill: none;
       stroke: currentColor;
-      stroke-width: 2;
+      stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
-      transition: transform 0.25s;
+      transition: transform 0.2s ease;
     }
- 
-    &:hover svg {
-      transform: translateX(5px);
+
+    &:hover {
+      color: $color-primario-oscuro;
+      svg {
+        transform: translateX(4px);
+      }
     }
- 
-    &:focus-visible {
-      outline: 2px solid $color-resalte;
-      outline-offset: 5px;
-      border-radius: 3px;
+  }
+
+  // Tarjeta derecha estilo "Nuestra Historia"
+  &__tarjeta-destacada {
+    background: $gradiente-fondo-tarjeta;
+    border: 1px solid rgba(239, 65, 54, 0.2);
+    border-radius: 24px;
+    padding: 2.8rem 2.4rem;
+    box-shadow: 0 16px 36px -10px rgba(239, 65, 54, 0.1);
+  }
+
+  &__destacada-titulo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $color-titulo;
+    margin: 0 0 1.6rem;
+  }
+
+  &__pilares {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+
+  &__pilar {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+
+    &-numero {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: $color-titulo;
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    &-info {
+      h4 {
+        margin: 0 0 0.25rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: $color-titulo;
+      }
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: $color-texto;
+      }
     }
   }
 }
 
 
-//carrusel logos
+// 4. CARRUSEL LOGOS DE COMERCIOS
 
-
-$fondo: #f4f4f7;
-$color-acento: #EA4335;
-$color-anillo: #EA4335;
-$breakpoint-movil: 760px;
- 
-
-@function u($n) {
-  @return calc(#{$n} * min(1vw, 19px));
-}
- 
 .logos {
   position: relative;
   width: 100%;
-  background: $fondo;
- 
+  background: $fondo-neutro;
+  border-top: 1px solid $borde-suave;
+  border-bottom: 1px solid $borde-suave;
+  padding: 1.5rem 0;
+
   &,
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
- 
+
   &__ventana {
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scrollbar-width: none;
     cursor: grab;
-    outline-offset: -3px;
- 
+
     &::-webkit-scrollbar {
       display: none;
     }
- 
+
     &.is-arrastrando {
       cursor: grabbing;
       user-select: none;
     }
   }
- 
+
   &__pista {
     display: flex;
     align-items: center;
-    gap: u(5.5);
+    gap: 4.5rem;
     width: max-content;
     margin: 0;
-    padding: u(4.5) u(6.5); 
+    padding: 1.5rem 5rem;
     list-style: none;
   }
- 
+
   &__item {
     flex: none;
-    margin: 0;
-    padding: 0;
- 
+
     img {
       display: block;
-      height: u(3.4);
+      height: 40px;
       width: auto;
       max-width: none;
-      -webkit-user-drag: none;
-      user-select: none;
+      filter: grayscale(100%);
+      opacity: 0.65;
+      transition: filter 0.25s, opacity 0.25s;
+
+      &:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+      }
     }
   }
- 
 
   &__flecha {
     position: absolute;
@@ -624,296 +650,267 @@ $breakpoint-movil: 760px;
     z-index: 1;
     display: grid;
     place-items: center;
-    width: u(2.2);
-    height: u(2.2);
-    min-width: 30px;
-    min-height: 30px;
-    margin: 0;
-    padding: 0;
-    border: 1px solid $color-anillo;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e5e7eb;
     border-radius: 50%;
-    background: #fff;
-    color: $color-acento;
+    background: #ffffff;
+    color: $color-titulo;
     cursor: pointer;
     transform: translateY(-50%);
-    box-shadow: 0 u(0.3) u(1) rgba(30, 30, 60, 0.08);
-    transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
- 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+
     svg {
-      width: 48%;
-      height: 48%;
+      width: 16px;
+      height: 16px;
       fill: none;
       stroke: currentColor;
       stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
- 
+
     &--prev {
-      left: u(1.5);
+      left: 1.5rem;
     }
- 
+
     &--next {
-      right: u(1.5);
+      right: 1.5rem;
     }
- 
+
     &:hover:not(:disabled) {
-      background: $color-acento;
-      border-color: $color-acento;
-      color: #fff;
+      background: $color-primario;
+      border-color: $color-primario;
+      color: #ffffff;
     }
- 
+
     &:disabled {
       opacity: 0.35;
       cursor: default;
     }
- 
-    &:focus-visible {
-      outline: 2px solid $color-acento;
-      outline-offset: 3px;
-    }
   }
- 
+
   &.sin-desborde &__flecha {
     display: none;
   }
- 
+
   &.sin-desborde &__pista {
     width: 100%;
     justify-content: center;
   }
 }
- 
 
-@media (max-width: 760px) {
-  .hero {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 32px 20px 60px;
-  }
- 
-  .hero__contenido {
-    flex: none;
-    width: 100%;
-  }
- 
-  .hero__titulo,
-  .hero h1 {
-    font-size: 2.2rem;
-    margin-bottom: 16px;
-  }
- 
-  .hero__subtitulo,
-  .hero p {
-    font-size: 1.1rem;
-    margin-bottom: 28px;
-  }
- 
-  .hero__boton,
-  .hero__contenido a {
-    font-size: 0.9rem;
-    border-radius: 4px;
-  }
- 
-  .hero__titulo br,
-  .hero__subtitulo br {
-    display: none;
-  }
- 
-  .hero__imagen {
-    flex: none;
-    width: 100%;
-  }
-}
 
-$fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-$color-titulo: #1c2434;
-$color-texto: #6b7694;
-$color-comilla: #EA4335;
-$color-linea-1: #EA4335;
-$color-linea-2: #EA4335;
-$breakpoint-movil: 760px;
- 
+// 5. SECCIÓN FEEDBACK / RESEÑAS
 
-@function u($n) {
-  @return calc(#{$n} * min(1vw, 19px));
-}
- 
 .feedback {
+  padding: 5.5rem 1.5rem;
+  font-family: $fuente;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: u(12) u(2.5) u(10);
-  font-family: $fuente;
-  background: #fff;
- 
+
   &,
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
- 
-  // Línea de acento sobre el título
-  &__linea {
-    display: block;
-    width: u(4.8);
-    height: u(0.35);
-    min-height: 3px;
-    margin-bottom: u(1.6);
-    border-radius: 2px;
-    background: linear-gradient(90deg, $color-linea-1, $color-linea-2);
-  }
- 
-  &__titulo {
-    margin: 0 0 u(8.5);
+
+  &__tarjeta {
+    max-width: 820px;
+    width: 100%;
+    background: linear-gradient(180deg, #fffaf9 0%, #ffffff 100%);
+    border: 1px solid rgba(239, 65, 54, 0.15);
+    border-radius: 24px;
+    padding: 3.5rem 3.5rem;
     text-align: center;
-    font-size: u(2.45);
-    font-weight: 400;
-    line-height: 1.2;
-    color: $color-titulo;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    position: relative;
   }
- 
-  // Texto centrado con una comilla arriba a la izquierda y otra abajo a la derecha
+
+  &__badge-google {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $color-titulo;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+
+    span {
+      color: #f59e0b;
+    }
+  }
+
+  &__titulo {
+    margin: 0 0 1.5rem;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: $color-titulo;
+    letter-spacing: -0.02em;
+  }
+
   &__cuerpo {
     position: relative;
-    width: 100%;
-    max-width: u(34);
+    max-width: 660px;
+    margin: 0 auto;
   }
- 
+
   &__texto {
     margin: 0;
-    text-align: center;
-    font-size: u(1.25);
-    line-height: 2;
+    font-size: 1.15rem;
+    line-height: 1.8;
     color: $color-texto;
   }
- 
+
   &__comilla {
+    width: 16px;
+    height: 24px;
+    fill: $color-primario;
+    opacity: 0.35;
     position: absolute;
-    width: u(1.1);
-    height: u(1.75);
-    fill: $color-comilla;
- 
-    // la de apertura es la de cierre girada
+
     &--abre {
-      top: u(-0.2);
-      left: u(-6.5);
+      top: -12px;
+      left: -28px;
       transform: rotate(180deg);
     }
- 
+
     &--cierra {
-      right: u(-6.5);
-      bottom: u(2.8);
+      bottom: -12px;
+      right: -28px;
     }
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .carrusel__pista,
-  .carrusel__relleno,
-  .tarjeta {
-    transition: none;
-  }
-}
 
-@media (max-width: $breakpoint-movil) {
-  .sobre {
-    padding: 40px 24px 56px;
- 
-    &__titulo {
-      margin-bottom: 32px;
-      font-size: 2.1rem;
-    }
- 
+// RESPONSIVE DESIGN (Tablets y Celulares)
+
+@media (max-width: $breakpoint-tablet) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 1.5rem 4rem;
+    gap: 2.5rem;
+
     &__contenido {
-      max-width: 520px;
+      max-width: 100%;
     }
- 
-    &__linea {
-      width: 40px;
-      margin-bottom: 16px;
+
+    &__titulo {
+      font-size: 2.7rem;
     }
- 
-    &__lema {
-      font-size: 1.2rem;
+
+    &__acciones {
+      justify-content: center;
     }
- 
-    &__texto {
-      font-size: 0.95rem;
-      line-height: 1.8;
+
+    &__garantia {
+      justify-content: center;
     }
- 
-    &__boton {
-      margin-top: 12px;
-      font-size: 0.95rem;
+
+    &__imagen img {
+      max-width: 480px;
     }
   }
-}
-@media (max-width: $breakpoint-movil) {
-  .logos {
-    &__pista {
-      gap: 32px;
-      padding: 24px 52px;
-    }
- 
-    &__item img {
-      height: 28px;
-    }
- 
-    &__flecha {
-      width: 30px;
-      height: 30px;
- 
-      &--prev {
-        left: 10px;
-      }
- 
-      &--next {
-        right: 10px;
-      }
-    }
+
+  .carrusel {
+    --ancho-tarjeta: 320px;
+    --separacion: 18px;
+  }
+
+  .sobre__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 }
 
 @media (max-width: $breakpoint-movil) {
-  .feedback {
-    padding: 64px 24px 56px;
- 
-    &__linea {
-      width: 40px;
-      margin-bottom: 14px;
-    }
- 
+  .hero {
+    padding: 2.5rem 1.25rem 3.5rem;
+
     &__titulo {
-      margin-bottom: 40px;
-      font-size: 1.6rem;
+      font-size: 2.2rem;
     }
- 
-    &__cuerpo {
-      max-width: 520px;
-      padding: 0 28px;
+
+    &__subtitulo {
+      font-size: 1.05rem;
     }
- 
+  }
+
+  .carrusel {
+    --ancho-tarjeta: min(80vw, 300px);
+    --separacion: 14px;
+    padding: 3.5rem 1rem;
+
+    &__titulo {
+      font-size: 1.8rem;
+    }
+
+    &__ventana {
+      padding: 1rem 0 2rem;
+    }
+
+    &__controles {
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    &__progreso {
+      position: static;
+      transform: none;
+    }
+  }
+
+  .tarjeta {
+    padding: 1.6rem 1.4rem;
+
+    &.is-vecina {
+      opacity: 0.5;
+    }
+
+    &.is-activa {
+      transform: none;
+    }
+  }
+
+  .sobre {
+    padding: 3.5rem 1.25rem;
+
+    &__titulo {
+      font-size: 1.9rem;
+    }
+
+    &__tarjeta-destacada {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  .feedback {
+    padding: 3.5rem 1rem;
+
+    &__tarjeta {
+      padding: 2.5rem 1.5rem;
+    }
+
+    &__titulo {
+      font-size: 1.7rem;
+    }
+
     &__texto {
-      font-size: 0.95rem;
-      line-height: 1.8;
+      font-size: 1rem;
     }
- 
+
     &__comilla {
-      width: 12px;
-      height: 19px;
- 
-      &--abre {
-        top: 4px;
-        left: 4px;
-      }
- 
-      &--cierra {
-        right: 4px;
-        bottom: 6px;
-      }
+      display: none;
     }
   }
 }
