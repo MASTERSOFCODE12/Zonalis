@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zonalis - Alquileres</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+<header class="header" id="site-header">
+  <a href="#inicio" class="header__logo">
+    <img src="../images/zonalisheader.png" alt="Zonalis">
+  </a>
+
+  <button class="header__hamburger" id="btnHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+
+  <nav class="header__nav" id="mainNav" aria-label="Navegación principal">
+    <a href="../index.html">Inicio</a>
+    <a href="./comercios.html">Comercios</a>
+    <a href="./Nosotros.html">Nosotros</a>
+    <a href="./comofunciona.html">Cómo funciona</a>
+    <a href="#alquileres.html">Alquileres</a>
+    <a href="">Ventas</a>
+    <a href="">Cuponeras</a>
+    <a href="#favoritos" class="header__link-favoritos" id="btnAbrirFavoritos">
+      Favoritos (<span id="cantFavoritos">0</span>)
+    </a>
+
+    <a href="#login" class="header__boton header__boton--mobile">Registrarse / Loguearse</a>
+  </nav>
+
+  <a href="#login" class="header__boton header__boton--desktop">Registrarse / Loguearse</a>
+</header>
+
+<main class="alquileres-main">
+        <section class="alquileres-header">
+            <div class="icono-tienda">🏠</div>
+            <h1>Alquileres en Mendoza</h1>
+            <p>Encontrá tu próximo hogar. Trato directo, sin intermediarios.</p>
+
+            <div class="filtros-busqueda">
+                <div class="contenedor-buscador">
+                    <span class="icono-lupa">🔍</span>
+                    <input type="text" id="buscadorAlquileres" placeholder="Buscar por localidad (ej. Tunuyán, Ciudad...)">
+                </div>
+                
+                <select id="filtroTipoAlquiler" class="select-categoria">
+                    <option value="todos">Todos los tipos</option>
+                    <option value="casa">Casa</option>
+                    <option value="departamento">Departamento</option>
+                    <option value="Local">Local</option>
+                    <option value="Oficina">Oficina</option>
+                </select>
+            </div>
+        </section>
+
+
+        <section class="alquileres-grid" id="listaAlquileres">
+            <article class="alquiler-card" data-tipo="departamento">
+                <div class="card-imagen slider-container">
+                    <span class="categoria-badge">Departamento</span>
+                    
+                    <div class="slider-imagenes">
+                        <img src="https://i.ibb.co/BKyCMjzc/frente.jpg" alt="Frente del dpto" class="img-alquiler active">
+                        <img src="https://i.ibb.co/GvqNKWGP/cocina.jpg" alt="Cocina" class="img-alquiler">
+                        <img src="https://i.ibb.co/nNdKj4DT/living1.jpg" alt="Living1" class="img-alquiler">
+                        <img src="https://i.ibb.co/LdZksn3t/living2.jpg" alt="Living2" class="img-alquiler">
+                        <img src="https://i.ibb.co/Q3HnsBpm/pieza1.jpg" alt="Pieza1" class="img-alquiler">
+                        <img src="https://i.ibb.co/p6TrG38Z/pieza2.jpg" alt="Pieza2" class="img-alquiler">
+                        <img src="https://i.ibb.co/9dqQwnv/patio.jpg" alt="Patio" class="img-alquiler">
+                        <img src="https://i.ibb.co/Z6ds4bvY/bano.jpg" alt="bano" class="img-alquiler">
+                        <img src="https://i.ibb.co/ZRr4BHJH/cochera.jpg" alt="Cochera" class="img-alquiler">
+                    </div>
+
+                    <button class="btn-slider prev">❮</button>
+                    <button class="btn-slider next">❯</button>
+                </div>
+                <div class="card-contenido">
+                    <h2 class="precio-destacado">$580000 / mes</h2>
+                    <p class="titulo-propiedad">Hermoso departamento con patio</p>
+                    <p class="descripcion">2 habitaciones, 1 baño, cochera y patio amplio con parrilla. Ideal para familias.</p>
+                    <p class="dato localidad">📍 Tunuyán, barrio Bombal</p>
+                    <div class="card-footer">
+                        <button class="btn-fav-grid" 
+                        data-slug="depto-bombal|https://wa.me/2622560366?text=Hola,%20vi%20tu%20depto%20en%20Zonalis" 
+                        data-nombre="Hermoso departamento con patio" 
+                        data-imagen="https://i.ibb.co/BKyCMjzc/frente.jpg">
+                        🤍 Agregar a favoritos
+                        </button>
+                        <a href="https://wa.me/2622560366?text=Hola,%20vi%20tu%20depto%20en%20Zonalis" target="_blank" class="btn-whatsapp">
+                            💬 Contactar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+
+
+        </section>
+
+
+        <section class="cta-banner">
+            <h2>¿Tenés una propiedad para alquilar?</h2>
+            <p>Publicá tu casa o departamento en Zonalis y conectá directamente con inquilinos de toda la provincia.</p>
+            <a href="publicar.html" class="btn-registro">🏠 Publicar mi alquiler gratis</a>
+        </section>
+    </main>
+
+<script src="../js/alquileres.js"></script>
+<script src="../js/auth.js"></script>
+</body>
+</html>

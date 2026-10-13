@@ -298,7 +298,7 @@ async function setupBotonComercio() {
   };
 }
 
-// Cargar la lista dentro del panel de favoritos
+
 async function cargarListaFavoritos() {
   const container = document.getElementById('favsListContent');
   if (!container || !currentUser) return;
@@ -312,23 +312,38 @@ async function cargarListaFavoritos() {
     .order('created_at', { ascending: false });
 
   if (error || !lista || lista.length === 0) {
-    container.innerHTML = '<p style="color:#777; font-size:14px; text-align:center; padding:20px;">Aún no tienes comercios guardados.</p>';
+    container.innerHTML = '<p style="color:#777; font-size:14px; text-align:center; padding:20px;">Aún no tienes comercios ni alquileres guardados.</p>';
     return;
   }
 
-  container.innerHTML = lista.map((fav) => `
+  container.innerHTML = lista.map((fav) => {
+    let urlDestino = fav.slug.includes('.html') ? fav.slug : fav.slug + '.html';
+    let textoLink = 'Ver perfil &rarr;';
+    let atributosExtra = '';
+
+
+    if (fav.slug.includes('|')) {
+        const partes = fav.slug.split('|');
+        urlDestino = partes[1]; // Acá sacamos el link de WhatsApp
+        textoLink = '💬 Contactar por WhatsApp';
+        atributosExtra = 'target="_blank" style="color: #25D366; font-weight: bold;"'; // Le damos color verde
+    }
+
+
+    const slugSeguro = encodeURIComponent(fav.slug).replace(/'/g, "%27");
+    return `
     <div class="fav-item">
       <img src="${fav.imagen || '../images/tiendastr.png'}" alt="${fav.nombre}">
       <div class="fav-item-info">
         <h4>${fav.nombre}</h4>
-        <a href="${fav.slug.includes('.html') ? fav.slug : fav.slug + '.html'}">Ver perfil &rarr;</a>
+        <a href="${urlDestino}" ${atributosExtra}>${textoLink}</a>
       </div>
-      <button class="fav-item-del" onclick="eliminarFavorito('${fav.slug}')" title="Eliminar">&times;</button>
+      <button class="fav-item-del" onclick="eliminarFavorito(decodeURIComponent('${slugSeguro}'))" title="Eliminar">&times;</button>
     </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
-// Eliminar un favorito desde el modal
 window.eliminarFavorito = async function(slug) {
   if (!currentUser) return;
   await supabaseClient.from('favoritos').delete().eq('user_id', currentUser.id).eq('slug', slug);
@@ -344,7 +359,6 @@ window.eliminarFavorito = async function(slug) {
   }
 };
 
-// Carga inicial
 document.addEventListener('DOMContentLoaded', () => {
   injectStylesAndModals();
 
