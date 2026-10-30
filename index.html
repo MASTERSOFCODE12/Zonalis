@@ -29,8 +29,8 @@
     <a href="./pages/Nosotros.html">Nosotros</a>
     <a href="./pages/comofunciona.html">Cómo funciona</a>
     <a href="./pages/alquileres.html">Alquileres</a>
-    <a href="">Ventas</a>
-    <a href="">Cuponeras</a>
+    <a href="./pages/servicios.html">Servicios</a>
+    <a href="./pages/cuponera.html">Cuponeras</a>
     <a href="#favoritos" class="header__link-favoritos" id="btnAbrirFavoritos">
       Favoritos (<span id="cantFavoritos">0</span>)
     </a>
@@ -269,64 +269,50 @@
 </main>
 
 <!-- Footer -->
-<footer class="footer">
-  <div class="footer__contenido">
+  <footer class="zonalis-site-footer">
+    <div class="zonalis-site-footer__inner">
 
-    <div class="footer__marca">
-      <a href="#inicio" class="footer__logo">
-        <img src="./images/zonalisheader.png" alt="Zonalis">
-      </a>
-      <p class="footer__descripcion">Tu barrio, tus servicios, todo en un solo lugar.</p>
-      <img class="footer__insignia" src="img/insignia.png" alt="">
+      <div class="zonalis-site-footer__brand">
+        <a href="../index.html" class="zonalis-site-footer__logo" aria-label="Zonalis, ir al inicio">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>ZONALIS</span>
+        </a>
+        <p class="zonalis-site-footer__about">La plataforma de Mendoza para encontrar comercios, profesionales y alquileres, con trato directo y sin intermediarios.</p>
+      </div>
+
+      <nav class="zonalis-site-footer__col" aria-label="Explorar">
+        <h2 class="zonalis-site-footer__title">Explorar</h2>
+        <ul>
+          <li><a href="comercios.html">Comercios</a></li>
+          <li><a href="alquileres.html">Alquileres</a></li>
+          <li><a href="ventas.html">Ventas</a></li>
+          <li><a href="cuponeras.html">Cuponeras</a></li>
+        </ul>
+      </nav>
+
+      <nav class="zonalis-site-footer__col" aria-label="Zonalis">
+        <h2 class="zonalis-site-footer__title">Zonalis</h2>
+        <ul>
+          <li><a href="Nosotros.html">Nosotros</a></li>
+          <li><a href="comofunciona.html">Cómo funciona</a></li>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </nav>
+
+      <div class="zonalis-site-footer__col">
+        <h2 class="zonalis-site-footer__title">Contacto</h2>
+        <ul>
+          <li>Mendoza, Argentina</li>
+          <li><a href="mailto:contacto@zonalis.com">contacto@zonalis.com</a></li>
+        </ul>
+      </div>
+
     </div>
 
-    <nav class="footer__col" aria-label="Enlaces del sitio">
-      <h2 class="footer__titulo">Links</h2>
-      <ul class="footer__lista">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#comercios">Comercios</a></li>
-        <li><a href="./pages/Nosotros.html">Nosotros</a></li>
-        <li><a href="./pages/comofunciona.html">Como funciona</a></li>
-        <li><a href="#feedback">Feedback de clientes</a></li>
-        <li><a href="#login">Registrarse / Loguearse</a></li>
-      </ul>
-    </nav>
-
-    <div class="footer__col">
-      <h2 class="footer__titulo">Contacto</h2>
-      <address class="footer__direccion">
-        <p>Mendoza, Argentina</p>
-        <p><a href="mailto:fknap.seguros@gmail.com">fknap.seguros@gmail.com</a></p>
-        <p><a href="tel:+542610000000">+54 2622673467</a></p>
-      </address>
+    <div class="zonalis-site-footer__bottom">
+      <p>© 2026 Zonalis. Todos los derechos reservados.</p>
     </div>
-
-    <ul class="footer__redes" aria-label="Redes sociales">
-      <li>
-        <a href="#" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-      </li>
-      <li>
-        <a href="#" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-        </a>
-      </li>
-      <li>
-        <a href="#" aria-label="Twitter / X">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-        </a>
-      </li>
-      <li>
-        <a href="#" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <p class="footer__legal">&copy; 2026 Zonalis. Todos los derechos reservados.</p>
-</footer>
+  </footer>
 
 <script src="./js/carrusel.js"></script>
 <script src="./js/carrusel2.js"></script>

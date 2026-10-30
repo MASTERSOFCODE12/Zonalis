@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+<header class="header" id="site-header">
+  <a href="#inicio" class="header__logo">
+    <img src="../images/zonalisheader.png" alt="Zonalis">
+  </a>
+
+  <button class="header__hamburger" id="btnHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="header__nav" id="mainNav" aria-label="Navegación principal">
+    <a href="../index.html">Inicio</a>
+    <a href="/pages/comercios.html">Comercios</a>
+    <a href="/pages/Nosotros.html">Nosotros</a>
+    <a href="#comofunciona.html">Cómo funciona</a>
+    <a href="/pages/alquileres.html">Alquileres</a>
+    <a href="/pages/servicios.html">Servicios</a>
+    <a href="/pages/cuponera.html">Cuponeras</a>
+    <a href="#favoritos" class="header__link-favoritos" id="btnAbrirFavoritos">
+      Favoritos (<span id="cantFavoritos">0</span>)
+    </a>
+
+    <a href="#login" class="header__boton header__boton--mobile">Registrarse / Loguearse</a>
+  </nav>
+
+
+  <a href="#login" class="header__boton header__boton--desktop">Registrarse / Loguearse</a>
+</header>
+
+<main class="zonalis-services" id="zonalis-servicios">
+  <section class="zonalis-services__hero">
+    <div class="zonalis-services__container">
+      <span class="zonalis-services__hero-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20"/></svg>
+      </span>
+      <h1 class="zonalis-services__title">Servicios y Profesionales en Mendoza</h1>
+      <p class="zonalis-services__subtitle">Encontrá al profesional que necesitás. Trato directo, sin intermediarios.</p>
+
+      <form class="zonalis-services__filters" role="search" onsubmit="return false">
+        <label class="zonalis-services__search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="zonalis-services__sr-only">Buscar servicio, profesional o localidad</span>
+          <input type="search" placeholder="Buscar servicio, profesional o localidad (ej. Plomero, Tunuyán...)" data-zonalis-servicios-buscar>
+        </label>
+
+        <label class="zonalis-services__select">
+          <span class="zonalis-services__sr-only">Categoría</span>
+          <select data-zonalis-servicios-categoria>
+            <option value="">Todas las categorías</option>
+            <option value="hogar">Hogar y reparaciones</option>
+            <option value="salud">Salud y bienestar</option>
+            <option value="educacion">Educación y clases</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="eventos">Eventos y gastronomía</option>
+            <option value="otros">Otros servicios</option>
+          </select>
+        </label>
+      </form>
+    </div>
+  </section>
+
+  <section class="zonalis-services__list-section" aria-label="Listado de profesionales">
+    <div class="zonalis-services__container">
+
+      <ul class="zonalis-services__grid" data-zonalis-servicios-lista>
+
+        <li class="zonalis-services__item" data-categoria="tecnologia">
+          <article class="zonalis-pro">
+            <figure class="zonalis-pro__photo">
+
+              <span class="zonalis-services__photo-placeholder" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+              </span>
+              <span class="zonalis-pro__badge">Hogar</span>
+            </figure>
+
+            <div class="zonalis-pro__body">
+              <h2 class="zonalis-pro__name">Francisco Agustin Knap</h2>
+              <p class="zonalis-pro__role">Servicio tecnico PC</p>
+              <p class="zonalis-pro__desc">Reparacion y armado de pcs.</p>
+              <p class="zonalis-pro__location">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Tunuyán, Mendoza
+              </p>
+              <p class="zonalis-pro__meta">5 años de experiencia</p>
+
+              <div class="zonalis-pro__actions">
+                <a href="https://wa.me/5492622673467" class="zonalis-pro__button zonalis-pro__button--primary" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+                  Contactar por WhatsApp
+                </a>
+              </div>
+            </div>
+          </article>
+        </li>
+
+      </ul>
+
+     
+      <p class="zonalis-services__empty" data-zonalis-servicios-vacio hidden>No encontramos profesionales con esa búsqueda. Probá con otra palabra o categoría.</p>
+
+
+      <aside class="zonalis-services__cta">
+        <h2 class="zonalis-services__cta-title">¿Ofrecés un servicio?</h2>
+        <p class="zonalis-services__cta-text">Creá tu perfil profesional en Zonalis y conectá directamente con clientes de toda la provincia.</p>
+        <a href="https://forms.gle/RvqjXhkAKJF1xqxH9" target="_blank" class="zonalis-services__cta-button ">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 19v-1a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v1"/><circle cx="9" cy="7" r="3.5"/><path d="M19 8v6M16 11h6"/></svg>
+          Publicar mi servicio gratis
+        </a>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+  <footer class="zonalis-site-footer">
+    <div class="zonalis-site-footer__inner">
+
+      <div class="zonalis-site-footer__brand">
+        <a href="../index.html" class="zonalis-site-footer__logo" aria-label="Zonalis, ir al inicio">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>ZONALIS</span>
+        </a>
+        <p class="zonalis-site-footer__about">La plataforma de Mendoza para encontrar comercios, profesionales y alquileres, con trato directo y sin intermediarios.</p>
+      </div>
+
+      <nav class="zonalis-site-footer__col" aria-label="Explorar">
+        <h2 class="zonalis-site-footer__title">Explorar</h2>
+        <ul>
+          <li><a href="comercios.html">Comercios</a></li>
+          <li><a href="alquileres.html">Alquileres</a></li>
+          <li><a href="ventas.html">Ventas</a></li>
+          <li><a href="cuponeras.html">Cuponeras</a></li>
+        </ul>
+      </nav>
+
+      <nav class="zonalis-site-footer__col" aria-label="Zonalis">
+        <h2 class="zonalis-site-footer__title">Zonalis</h2>
+        <ul>
+          <li><a href="Nosotros.html">Nosotros</a></li>
+          <li><a href="comofunciona.html">Cómo funciona</a></li>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </nav>
+
+      <div class="zonalis-site-footer__col">
+        <h2 class="zonalis-site-footer__title">Contacto</h2>
+        <ul>
+          <li>Mendoza, Argentina</li>
+          <li><a href="mailto:contacto@zonalis.com">contacto@zonalis.com</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="zonalis-site-footer__bottom">
+      <p>© 2026 Zonalis. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+<script src="../js/auth.js"></script>
+<script src="../js/hamburgesa.js"></script>
+<script src="../js/servicios.js"></script>
+</body>
+</html>

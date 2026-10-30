@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zonalis - TiendaSantaRita</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+<header class="header" id="site-header">
+  <a href="#inicio" class="header__logo">
+    <img src="../images/zonalisheader.png" alt="Zonalis">
+  </a>
+
+  <button class="header__hamburger" id="btnHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span> 
+    <span></span>
+  </button>
+
+  <nav class="header__nav" id="mainNav" aria-label="Navegación principal">
+    <a href="../index.html">Inicio</a>
+    <a href="../pages/comercios.html">Comercios</a>
+    <a href="../pages/Nosotros.html">Nosotros</a>
+    <a href="../pages/comofunciona.html">Cómo funciona</a>
+    <a href="../pages/alquileres.html">Alquileres</a>
+    <a href="../pages/servicios.html">Servicios</a>
+    <a href="../pages/cuponera.html">Cuponeras</a>
+    <a href="#favoritos" class="header__link-favoritos" id="btnAbrirFavoritos">
+      Favoritos (<span id="cantFavoritos">0</span>)
+    </a>
+
+    <a href="#login" class="header__boton header__boton--mobile">Registrarse / Loguearse</a>
+  </nav>
+
+
+  <a href="#login" class="header__boton header__boton--desktop">Registrarse / Loguearse</a>
+</header>
+
+  <main class="zonalis-business" data-zonalis-visita="tienda-santa-rita">
+ 
+  <!-- ===== Encabezado ===== -->
+  <header class="zonalis-business__header">
+    <div class="zonalis-business__container">
+ 
+      <button type="button" class="zonalis-business__back" onclick="history.back()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        Volver
+      </button>
+ 
+      <div class="zonalis-business__identity">
+        <figure class="zonalis-business__logo">
+          <img src="../images/tcoreana.jpeg" alt="Tienda coreana">
+        </figure>
+ 
+        <div class="zonalis-business__info">
+          <h1 class="zonalis-business__name">Tiendita Koreana</h1>
+          <p class="zonalis-business__owner"></p>
+          <p class="zonalis-business__location">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>
+              <strong>calle Pueyrredon 156</strong>
+              <small>Tunuyan, Mendoza</small>
+            </span>
+          </p>
+ 
+          <div class="zonalis-business__actions">
+            <a href="tel:+542622654454" class="zonalis-business__button zonalis-business__button--primary">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+              Contactar
+            </a>
+            <a href="https://wa.me/5492622654454" class="zonalis-business__button zonalis-business__button--whatsapp" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+              Enviar WhatsApp
+            </a>
+            <button type="button" class="zonalis-business__button zonalis-business__button--outline" id="btnFavorito">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg>
+              Favoritos
+            </button>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </header>
+ 
+  <!-- ===== Contenido ===== -->
+  <div class="zonalis-business__body">
+    <div class="zonalis-business__container zonalis-business__layout">
+ 
+      <!-- Columna principal -->
+      <div class="zonalis-business__main">
+        <section class="zonalis-business__card">
+          <h2 class="zonalis-business__card-title">✨Somo una tienda de productos coreanos en Tunuyán
+Hacemos envíos a todo el país ✨️💜</h2>
+          <p class="zonalis-business__text"></p>
+        </section>
+ 
+        <section class="zonalis-business__card">
+          <h2 class="zonalis-business__card-title">Servicios</h2>
+          <ul class="zonalis-business__services">
+            <li class="zonalis-business__service">●ramen</li>
+            <li class="zonalis-business__service">●soju</li>
+            <li class="zonalis-business__service">●snack</li>
+          </ul>
+        </section>
+      </div>
+ 
+      <!-- Columna lateral -->
+      <aside class="zonalis-business__side">
+ 
+
+        <section class="zonalis-business__stats" data-zonalis-estadisticas="SLUG-DEL-COMERCIO" aria-labelledby="zonalis-business-stats-title">
+          <h2 class="zonalis-business__stats-title" id="zonalis-business-stats-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg>
+            Estadísticas del perfil
+          </h2>
+          <div class="zonalis-business__stats-grid">
+            <div class="zonalis-business__stat">
+              <svg class="zonalis-business__stat-icon zonalis-business__stat-icon--visits" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              <p class="zonalis-business__stat-value" data-zonalis-visits>0</p>
+              <p class="zonalis-business__stat-label">Visitas al perfil</p>
+            </div>
+            <div class="zonalis-business__stat">
+              <svg class="zonalis-business__stat-icon zonalis-business__stat-icon--member" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+              <p class="zonalis-business__stat-value zonalis-business__stat-value--date" data-zonalis-member-since>30/10/2026</p>
+              <p class="zonalis-business__stat-label">Miembro desde</p>
+            </div>
+          </div>
+        </section>
+ 
+        <section class="zonalis-business__card">
+          <h2 class="zonalis-business__card-title zonalis-business__card-title--small">Información de contacto</h2>
+          <ul class="zonalis-business__contact">
+            <li class="zonalis-business__contact-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <p class="zonalis-business__contact-main">Dirección del comercio</p>
+                <p class="zonalis-business__contact-sub">Pueyrredor 156, Mendoza</p>
+                <a href="https://maps.app.goo.gl/18eJCHEt4Zy9dkhH6" class="zonalis-business__link zonalis-business__link--small" target="_blank" rel="noopener">Ver en mapa →</a>
+              </div>
+            </li>
+            <li class="zonalis-business__contact-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              <p class="zonalis-business__contact-main">tiendakoreana@gmail.com</p>
+            </li>
+            <li class="zonalis-business__contact-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5"/></svg>
+              <a href="https://www.instagram.com/tiendita.koreana.tunuyan/" class="zonalis-business__link" target="_blank" rel="noopener">TienditaKoreana</a>
+            </li>
+            <li class="zonalis-business__contact-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+              <p class="zonalis-business__contact-main">5 años de experiencia</p>
+            </li>
+          </ul>
+        </section>
+ 
+      </aside>
+    </div>
+ 
+    <section class="zonalis-business__container zonalis-business__reviews" aria-labelledby="zonalis-business-reviews-title">
+      <h2 class="zonalis-business__reviews-title" id="zonalis-business-reviews-title">Reseñas de Google</h2>
+      <div class="zonalis-business__reviews-widget">
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-42159230-1ac1-43d4-baf4-c7405f5dcc1a" data-elfsight-app-lazy></div>
+      </div>
+    </section>
+  </div>
+ 
+</main>
+
+  <footer class="zonalis-site-footer">
+    <div class="zonalis-site-footer__inner">
+
+      <div class="zonalis-site-footer__brand">
+        <a href="../index.html" class="zonalis-site-footer__logo" aria-label="Zonalis, ir al inicio">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>ZONALIS</span>
+        </a>
+        <p class="zonalis-site-footer__about">La plataforma de Mendoza para encontrar comercios, profesionales y alquileres, con trato directo y sin intermediarios.</p>
+      </div>
+
+      <nav class="zonalis-site-footer__col" aria-label="Explorar">
+        <h2 class="zonalis-site-footer__title">Explorar</h2>
+        <ul>
+          <li><a href="comercios.html">Comercios</a></li>
+          <li><a href="alquileres.html">Alquileres</a></li>
+          <li><a href="ventas.html">Ventas</a></li>
+          <li><a href="cuponeras.html">Cuponeras</a></li>
+        </ul>
+      </nav>
+
+      <nav class="zonalis-site-footer__col" aria-label="Zonalis">
+        <h2 class="zonalis-site-footer__title">Zonalis</h2>
+        <ul>
+          <li><a href="Nosotros.html">Nosotros</a></li>
+          <li><a href="comofunciona.html">Cómo funciona</a></li>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </nav>
+
+      <div class="zonalis-site-footer__col">
+        <h2 class="zonalis-site-footer__title">Contacto</h2>
+        <ul>
+          <li>Mendoza, Argentina</li>
+          <li><a href="mailto:contacto@zonalis.com">contacto@zonalis.com</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="zonalis-site-footer__bottom">
+      <p>© 2026 Zonalis. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+
+
+<script src="../js/zonalis-estadisticas.js" defer></script>
+<script src="../js/auth.js" defer></script>
+<script src="../js/hamburgesa.js"></script>
+</body>
+</html>

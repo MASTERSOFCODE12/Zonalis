@@ -2923,4 +2923,972 @@ body {
   color: #d32f2f;
 }
 
+.zonalis-coupons {
+  padding: 4rem 1.5rem;
+  background: #f5f7fa;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  text-align: center;
+}
+.zonalis-coupons__container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.zonalis-coupons__title {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1f2a44;
+}
+.zonalis-coupons__subtitle {
+  margin: 0 0 2.5rem;
+  font-size: 1rem;
+  color: #4b5568;
+}
+.zonalis-coupons__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+@media (max-width: 800px) {
+  .zonalis-coupons__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.zonalis-coupon {
+  position: relative;
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0.9rem;
+  box-shadow: 0 4px 18px rgba(31, 42, 68, 0.1);
+}
+@media (max-width: 480px) {
+  .zonalis-coupon {
+    flex-direction: column;
+  }
+}
+.zonalis-coupon__stub {
+  position: relative;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 7.5rem;
+  padding: 1rem 0.5rem;
+  background: linear-gradient(135deg, #E4661B 0%, #EA4335 100%);
+  color: #fff;
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .zonalis-coupon__stub {
+    width: auto;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0.9rem 1rem;
+  }
+}
+.zonalis-coupon__stub::before, .zonalis-coupon__stub::after {
+  content: "";
+  position: absolute;
+  right: -0.6rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: #f5f7fa;
+  border-radius: 50%;
+}
+@media (max-width: 480px) {
+  .zonalis-coupon__stub::before, .zonalis-coupon__stub::after {
+    display: none;
+  }
+}
+.zonalis-coupon__stub::before {
+  top: -0.6rem;
+}
+.zonalis-coupon__stub::after {
+  bottom: -0.6rem;
+}
+.zonalis-coupon__amount {
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.zonalis-coupon__off {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+@media (max-width: 480px) {
+  .zonalis-coupon__off {
+    margin-top: 0;
+  }
+}
+.zonalis-coupon__body {
+  flex: 1;
+  min-width: 0;
+  padding: 1.25rem 1.4rem 1.1rem;
+}
+.zonalis-coupon__shop {
+  margin: 0 0 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #E4661B;
+}
+.zonalis-coupon__title {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #1f2a44;
+}
+.zonalis-coupon__terms {
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #4b5568;
+}
+.zonalis-coupon__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+.zonalis-coupon__code-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem 0.85rem;
+  background: #FCE6D9;
+  border: 1.5px dashed #FCE6D9;
+  border-radius: 0.5rem;
+}
+.zonalis-coupon__code-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #4b5568;
+}
+.zonalis-coupon__code {
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #1f2a44;
+}
+.zonalis-coupon__copy {
+  padding: 0.65rem 1.1rem;
+  background: #E4661B;
+  border: 0;
+  border-radius: 0.5rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.zonalis-coupon__copy:hover {
+  background: #C9560F;
+}
+.zonalis-coupon__copy:focus-visible {
+  outline: 3px solid #1f2a44;
+  outline-offset: 2px;
+}
+.zonalis-coupon__copy.is-copied {
+  background: #1f2a44;
+}
+.zonalis-coupon__expiry {
+  margin: 0.8rem 0 0;
+  font-size: 0.72rem;
+  color: #4b5568;
+}
+.zonalis-coupon--expired {
+  opacity: 0.6;
+}
+.zonalis-coupon--expired .zonalis-coupon__stub {
+  background: #9aa3b2;
+}
+.zonalis-coupon--expired .zonalis-coupon__code {
+  text-decoration: line-through;
+}
+.zonalis-coupon--expired .zonalis-coupon__copy {
+  background: #9aa3b2;
+  cursor: not-allowed;
+}
+.zonalis-coupon--expired .zonalis-coupon__copy:hover {
+  background: #9aa3b2;
+}
+
+.zonalis-services {
+  min-height: 60vh;
+  background: #fff;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  color: #4b5568;
+}
+.zonalis-services__container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.zonalis-services__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.zonalis-services__hero {
+  padding: 2.5rem 0 2rem;
+  text-align: center;
+}
+.zonalis-services__hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #E4661B 0%, #EA4335 100%);
+  border-radius: 50%;
+  color: #fff;
+}
+.zonalis-services__hero-icon svg {
+  flex: none;
+  width: 1.7rem;
+  height: 1.7rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.zonalis-services__title {
+  margin: 0 0 0.5rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1f2a44;
+}
+@media (max-width: 560px) {
+  .zonalis-services__title {
+    font-size: 1.7rem;
+  }
+}
+.zonalis-services__subtitle {
+  margin: 0 0 1.75rem;
+  font-size: 1rem;
+}
+.zonalis-services__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+}
+.zonalis-services__search, .zonalis-services__select {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #dfe3ea;
+  border-radius: 2rem;
+  box-shadow: 0 2px 10px rgba(31, 42, 68, 0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.zonalis-services__search:focus-within, .zonalis-services__select:focus-within {
+  border-color: #E4661B;
+  box-shadow: 0 0 0 3px rgba(228, 102, 27, 0.18);
+}
+.zonalis-services__search {
+  flex: 1 1 22rem;
+  max-width: 38rem;
+  padding: 0 1.1rem;
+  gap: 0.6rem;
+}
+.zonalis-services__search svg {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: #E4661B;
+}
+.zonalis-services__search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.85rem 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  color: #1f2a44;
+}
+.zonalis-services__select {
+  flex: 0 1 16rem;
+  padding: 0 0.6rem;
+}
+.zonalis-services__select select {
+  width: 100%;
+  padding: 0.85rem 0.6rem;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  color: #1f2a44;
+  cursor: pointer;
+}
+.zonalis-services__list-section {
+  padding: 1.5rem 0 4rem;
+}
+.zonalis-services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.zonalis-services__item[hidden] {
+  display: none;
+}
+.zonalis-services__photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #FCE6D9;
+  color: #EA4335;
+}
+.zonalis-services__photo-placeholder svg {
+  flex: none;
+  width: 4rem;
+  height: 4rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+}
+.zonalis-services__empty {
+  margin: 2rem 0 0;
+  padding: 1.5rem;
+  background: #FCE6D9;
+  border-radius: 0.75rem;
+  text-align: center;
+  color: #1f2a44;
+}
+.zonalis-services__empty[hidden] {
+  display: none;
+}
+.zonalis-services__cta {
+  margin-top: 3rem;
+  padding: 2.5rem 1.5rem;
+  background: linear-gradient(90deg, #EA4335 0%, #E4661B 100%);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(234, 67, 53, 0.25);
+  text-align: center;
+}
+.zonalis-services__cta-title {
+  margin: 0 0 0.6rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+.zonalis-services__cta-text {
+  max-width: 38rem;
+  margin: 0 auto 1.4rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+}
+.zonalis-services__cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  background: #fff;
+  border-radius: 2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #EA4335;
+  transition: background 0.2s ease;
+}
+.zonalis-services__cta-button svg {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.zonalis-services__cta-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+.zonalis-services__cta-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.zonalis-pro {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0.9rem;
+  box-shadow: 0 4px 18px rgba(31, 42, 68, 0.12);
+}
+.zonalis-pro__photo {
+  position: relative;
+  height: 13.75rem;
+  margin: 0;
+  overflow: hidden;
+  background: #FCE6D9;
+}
+.zonalis-pro__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.zonalis-pro__badge {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  padding: 0.3rem 0.8rem;
+  background: #fff;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #EA4335;
+  box-shadow: 0 2px 6px rgba(31, 42, 68, 0.15);
+}
+.zonalis-pro__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.25rem 1.4rem 1.4rem;
+}
+.zonalis-pro__name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #1f2a44;
+}
+.zonalis-pro__role {
+  margin: 0.2rem 0 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #E4661B;
+}
+.zonalis-pro__desc {
+  margin: 0 0 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.zonalis-pro__location {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1f2a44;
+}
+.zonalis-pro__location svg {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: #EA4335;
+}
+.zonalis-pro__meta {
+  margin: 0.3rem 0 1rem;
+  padding-left: 1.4rem;
+  font-size: 0.78rem;
+}
+.zonalis-pro__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #dfe3ea;
+}
+.zonalis-pro__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 2rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.zonalis-pro__button svg {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.zonalis-pro__button:focus-visible {
+  outline: 3px solid #1f2a44;
+  outline-offset: 2px;
+}
+.zonalis-pro__button--primary {
+  background: #EA4335;
+  color: #fff;
+}
+.zonalis-pro__button--primary:hover {
+  background: #D2362A;
+}
+.zonalis-pro__button--outline {
+  background: #fff;
+  border-color: #dfe3ea;
+  color: #1f2a44;
+}
+.zonalis-pro__button--outline:hover {
+  border-color: #E4661B;
+  color: #E4661B;
+}
+.zonalis-pro__button--outline[aria-pressed=true] {
+  border-color: #E4661B;
+  background: #FCE6D9;
+  color: #E4661B;
+}
+.zonalis-pro__button--outline[aria-pressed=true] svg {
+  fill: currentColor;
+}
+
+.zonalis-site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  color: #4b5568;
+}
+.zonalis-site > main {
+  flex: 1;
+}
+
+.zonalis-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(31, 42, 68, 0.1);
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+}
+.zonalis-site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+}
+.zonalis-site-header__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.zonalis-site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #1f2a44;
+}
+.zonalis-site-header__logo svg {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: #EA4335;
+}
+.zonalis-site-header__logo span {
+  font-size: 1.6rem;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.zonalis-site-header__logo img {
+  display: block;
+  height: 2.4rem;
+}
+.zonalis-site-header__toggle {
+  display: none;
+  padding: 0.4rem;
+  background: transparent;
+  border: 1px solid #dfe3ea;
+  border-radius: 0.5rem;
+  color: #1f2a44;
+  cursor: pointer;
+}
+.zonalis-site-header__toggle svg {
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
+}
+@media (max-width: 1100px) {
+  .zonalis-site-header__toggle {
+    display: block;
+  }
+}
+.zonalis-site-header__nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+@media (max-width: 1100px) {
+  .zonalis-site-header__nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem 1.5rem 1.5rem;
+    background: #fff;
+    border-top: 1px solid #dfe3ea;
+    box-shadow: 0 8px 16px rgba(31, 42, 68, 0.1);
+  }
+  .zonalis-site-header__nav.is-open {
+    display: flex;
+  }
+}
+.zonalis-site-header__links {
+  display: flex;
+  flex: 1;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 1.3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (max-width: 1100px) {
+  .zonalis-site-header__links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+}
+.zonalis-site-header__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #1f2a44;
+  transition: color 0.2s ease;
+}
+.zonalis-site-header__links a:hover, .zonalis-site-header__links a:focus-visible {
+  color: #E4661B;
+}
+@media (max-width: 1100px) {
+  .zonalis-site-header__links a {
+    display: flex;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f5f7fa;
+  }
+}
+.zonalis-site-header__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  background: #f5f7fa;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.zonalis-site-header__cta {
+  flex: none;
+  padding: 0.7rem 1.4rem;
+  background: #EA4335;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(234, 67, 53, 0.3);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  transition: background 0.2s ease;
+}
+.zonalis-site-header__cta:hover {
+  background: #D2362A;
+}
+.zonalis-site-header__cta:focus-visible {
+  outline: 3px solid #1f2a44;
+  outline-offset: 2px;
+}
+@media (max-width: 1100px) {
+  .zonalis-site-header__cta {
+    margin-top: 1rem;
+  }
+}
+
+.zonalis-terms {
+  background: #f5f7fa;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+}
+.zonalis-terms__container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.zonalis-terms__container--narrow {
+  max-width: 820px;
+}
+.zonalis-terms__hero {
+  padding: 3.5rem 0 3rem;
+  background: linear-gradient(90deg, #E4661B 0%, #EA4335 100%);
+  text-align: center;
+}
+.zonalis-terms__title {
+  margin: 0 0 0.6rem;
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff;
+}
+@media (max-width: 560px) {
+  .zonalis-terms__title {
+    font-size: 2rem;
+  }
+}
+.zonalis-terms__subtitle {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+.zonalis-terms__updated {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+.zonalis-terms__content {
+  padding: 2.5rem 0 4rem;
+}
+.zonalis-terms__card {
+  padding: 2.25rem 2.25rem 2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 18px rgba(31, 42, 68, 0.1);
+}
+@media (max-width: 560px) {
+  .zonalis-terms__card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+.zonalis-terms__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: zonalis-terms;
+}
+.zonalis-terms__item {
+  position: relative;
+  padding: 0 0 1.4rem 3rem;
+  counter-increment: zonalis-terms;
+}
+.zonalis-terms__item::before {
+  content: counter(zonalis-terms);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: #E4661B;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+}
+.zonalis-terms__heading {
+  margin: 0.2rem 0 0.35rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2a44;
+}
+.zonalis-terms__text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.zonalis-terms__link {
+  font-weight: 500;
+  color: #E4661B;
+}
+.zonalis-terms__link:hover {
+  color: #C9560F;
+}
+.zonalis-terms__contact {
+  margin-top: 0.5rem;
+  padding: 1.25rem 1.4rem;
+  background: #FCE6D9;
+  border-radius: 0.75rem;
+}
+.zonalis-terms__contact-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1f2a44;
+}
+.zonalis-terms__note {
+  margin: 1.5rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid #dfe3ea;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.zonalis-site-footer {
+  background: #1f2a44;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+}
+.zonalis-site-footer__inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2rem;
+}
+@media (max-width: 800px) {
+  .zonalis-site-footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .zonalis-site-footer__inner {
+    grid-template-columns: 1fr;
+  }
+}
+.zonalis-site-footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+  text-decoration: none;
+  color: #fff;
+}
+.zonalis-site-footer__logo svg {
+  flex: none;
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: #E4661B;
+}
+.zonalis-site-footer__logo span {
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.zonalis-site-footer__about {
+  max-width: 22rem;
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.zonalis-site-footer__title {
+  margin: 0 0 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+.zonalis-site-footer__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.88rem;
+}
+.zonalis-site-footer a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+.zonalis-site-footer a:hover, .zonalis-site-footer a:focus-visible {
+  color: #E4661B;
+}
+.zonalis-site-footer__bottom {
+  padding: 1.1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  font-size: 0.8rem;
+}
+.zonalis-site-footer__bottom p {
+  margin: 0;
+}
+
 /*# sourceMappingURL=style.css.map */
